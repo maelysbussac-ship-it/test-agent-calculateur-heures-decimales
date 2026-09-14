@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertisseur Heures en Décimales & Calculateur de Temps de Travail</title>
+    <meta name="description" content="Convertissez facilement vos heures et minutes en centièmes/décimales (ex: 7h45 = 7,75h). Calculez votre temps de travail hebdomadaire, heures supplémentaires (25%, 50%) et votre salaire estimé.">
+    <meta name="keywords" content="convertisseur heures decimales, conversion minutes en centiemes, calcul heures de travail, calculateur fiche de paie, heures supplementaires 25 50, temps de travail hebdomadaire">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://test-agent-calculateur-heures-decimales.github.io/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Convertisseur Heures en Décimales & Calculateur de Paie">
+    <meta property="og:description" content="Outil gratuit et rapide de conversion d'heures en décimales, gestion de feuille de temps et calcul d'heures supplémentaires pour la paie.">
+    
+    <!-- Schema.org WebApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Calculateur & Convertisseur d'Heures en Décimales",
+      "url": "https://test-agent-calculateur-heures-decimales.github.io/",
+      "description": "Convertisseur bidirectionnel heures/minutes en heures décimales et calculateur de feuille de temps avec heures supplémentaires.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+
+    <!-- Schema.org FAQPage for GEO (Generative Engine Optimization) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Comment convertir des minutes en heures décimales ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pour convertir des minutes en centièmes d'heure (décimales), il suffit de diviser le nombre de minutes par 60. Par exemple : 15 minutes / 60 = 0,25 heure ; 30 minutes / 60 = 0,50 heure ; 45 minutes / 60 = 0,75 heure. Pour obtenir la durée totale en décimal, ajoutez les heures entières à ce résultat (ex: 7h45 = 7 + 0,75 = 7,75h)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Pourquoi la paie utilise-t-elle le format décimal au lieu de HH:MM ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Les logiciels de paie et de comptabilité utilisent les heures décimales (ou centièmes d'heure) pour pouvoir multiplier directement le temps de travail par le taux horaire en euros. Multiplier 7h30 par 15€/h donnerait un calcul erroné si on utilisait 7,30 au lieu de 7,50h."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment sont calculées les heures supplémentaires en France ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Selon le Code du travail français (pour un contrat 35h hebdomadaire) : les 8 premières heures supplémentaires (de la 36ème à la 43ème heure incluses) sont majorées de +25%. Les heures suivantes (à partir de la 44ème heure) sont majorées de +50%."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --accent: #10b981;
+            --radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px 10px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.1rem;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        @media (min-width: 850px) {
+            .grid-2 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .card h2 {
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            color: #334155;
+        }
+
+        input[type="text"],
+        input[type="time"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .result-box {
+            background-color: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .result-val {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .result-sub {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Timesheet Table */
+        .timesheet-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .timesheet-table th, .timesheet-table td {
+            padding: 8px 6px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+
+        .timesheet-table th {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .timesheet-table input {
+            padding: 6px 8px;
+            font-size: 0.88rem;
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 18px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-secondary {
+            background-color: #f1f5f9;
+            color: #475569;
+            border: 1px solid #cbd5e1;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e2e8f0;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* Cheat Sheet Table */
+        .cheat-sheet {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .cheat-sheet th, .cheat-sheet td {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        .cheat-sheet th {
+            background-color: #f1f5f9;
+        }
+
+        /* Content / GEO section */
+        .content-section {
+            margin-top: 40px;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px;
+        }
+
+        .faq-item h3 {
+            font-size: 1.1rem;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .faq-item p {
+            color: #334155;
+            font-size: 0.95rem;
+        }
+
+        /* AdSense Container Placeholder */
+        .ads-container {
+            margin: 25px 0;
+            padding: 15px;
+            background: #f1f5f9;
+            border: 1px dashed #cbd5e1;
+            border-radius: var(--radius);
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Modal styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 24px;
+            border-radius: var(--radius);
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close-btn {
+            float: right;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Convertisseur Heures en Décimales & Paie</h1>
+        <p>Outil gratuit d'imputation du temps de travail, conversion minutes ↔ centièmes et calcul des heures supplémentaires.</p>
+    </header>
+
+    <!-- Zone AdSense Haut -->
+    <div class="ads-container">
+        <span>Espace Publicitaire (Google AdSense Ready)</span>
+    </div>
+
+    <div class="grid grid-2">
+        <!-- Outil 1: Convertisseur Instantané -->
+        <div class="card">
+            <h2>⏱️ Convertisseur Instantané</h2>
+            
+            <div class="form-group">
+                <label for="hhmm-input">Format Heures : Minutes (HH:MM ou Ex: 7h45, 07:30)</label>
+                <input type="text" id="hhmm-input" placeholder="ex: 07:45 ou 7h45" value="07:45">
+            </div>
+
+            <div style="text-align: center; font-weight: bold; margin: 10px 0; color: var(--text-muted);">↕️ Conversion Bidirectionnelle</div>
+
+            <div class="form-group">
+                <label for="decimal-input">Format Décimal / Centièmes (Ex: 7,75)</label>
+                <input type="number" id="decimal-input" step="0.01" placeholder="ex: 7.75" value="7.75">
+            </div>
+
+            <div class="result-box">
+                <div class="result-sub">Résultat Equivalent</div>
+                <div class="result-val" id="instant-res">7h 45m = 7,75 h</div>
+            </div>
+
+            <h3 style="font-size: 0.95rem; margin-top: 20px; margin-bottom: 8px;">Table d'équivalence rapide (Minutes ➔ Décimales)</h3>
+            <table class="cheat-sheet">
+                <thead>
+                    <tr>
+                        <th>Min.</th><th>Déc.</th>
+                        <th>Min.</th><th>Déc.</th>
+                        <th>Min.</th><th>Déc.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>05 min</td><td>0,08 h</td><td>25 min</td><td>0,42 h</td><td>45 min</td><td>0,75 h</td></tr>
+                    <tr><td>10 min</td><td>0,17 h</td><td>30 min</td><td>0,50 h</td><td>50 min</td><td>0,83 h</td></tr>
+                    <tr><td>15 min</td><td>0,25 h</td><td>35 min</td><td>0,58 h</td><td>55 min</td><td>0,92 h</td></tr>
+                    <tr><td>20 min</td><td>0,33 h</td><td>40 min</td><td>0,67 h</td><td>60 min</td><td>1,00 h</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Outil 2: Calculateur Temps de Travail Hebdomadaire & Paie -->
+        <div class="card">
+            <h2>📅 Calculateur de Temps de Travail & Paie</h2>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">Saisissez vos horaires de la semaine pour calculer les heures effectives et les majorations (35h base France).</p>
+
+            <div style="overflow-x: auto;">
+                <table class="timesheet-table">
+                    <thead>
+                        <tr>
+                            <th>Jour</th>
+                            <th>Début</th>
+                            <th>Fin</th>
+                            <th>Pause (min)</th>
+                            <th>Total (h)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="timesheet-body">
+                        <!-- Généré via JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="form-group" style="margin-top: 16px;">
+                <label for="hourly-rate">Taux horaire brut (€/h) [Optionnel] :</label>
+                <input type="number" id="hourly-rate" placeholder="ex: 12.50" value="12.00" step="0.10">
+            </div>
+
+            <div class="result-box" style="background-color: #f0fdf4; border-color: #bbf7d0;">
+                <div class="result-sub">Total Hebdomadaire & Répartition Paie</div>
+                <div class="result-val" style="color: #166534;" id="weekly-total">0,00 h</div>
+                <div id="weekly-details" style="font-size: 0.88rem; margin-top: 8px; color: #15803d; text-align: left; line-height: 1.5;">
+                    <!-- Détails JS -->
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="btn" onclick="copySummary()">📋 Copier le résumé</button>
+                <button class="btn btn-secondary" onclick="resetTimesheet()">🔄 Réinitialiser</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Zone AdSense Milieu -->
+    <div class="ads-container">
+        <span>Espace Publicitaire (Google AdSense Ready)</span>
+    </div>
+
+    <!-- Section Contenu GEO & SEO Optimization -->
+    <section class="content-section">
+        <h2 style="margin-bottom: 20px; font-size: 1.5rem;">Guide & Questions Fréquentes sur la Conversion d'Heures en Décimales</h2>
+
+        <div class="faq-item">
+            <h3>Comment fonctionne la conversion des minutes en heures décimales ?</h3>
+            <p>Une heure comporte 60 minutes. Pour exprimer un nombre de minutes en valeur décimale (en centièmes d'heure), la formule mathématique consiste à diviser le nombre de minutes par 60.</p>
+            <p style="margin-top: 6px; font-family: monospace; background: #f1f5f9; padding: 6px 10px; border-radius: 6px;">Heures Décimales = Heures Entières + (Minutes / 60)</p>
+            <p style="margin-top: 6px;">Exemple : Pour 7 heures et 45 minutes ➔ 45 / 60 = 0,75. Le résultat décimal est <strong>7,75 heures</strong>.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Pourquoi les fiches de paie indiquent-elles des heures en centièmes ?</h3>
+            <p>Les logiciels de paie et de gestion des ressources humaines calculent les rémunérations en multipliant directement la durée travaillée par le taux horaire. Le système sexagésimal (base 60) des heures/minutes ne permet pas une multiplication directe. Pour calculer le salaire brut, il est indispensable de convertir le temps de travail en base décimale (base 100).</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Comment sont calculées les heures supplémentaires sur la paie en France ?</h3>
+            <p>Pour un salarié sous le régime légal des 35 heures par semaine :</p>
+
+            <ul style="margin-left: 20px; margin-top: 8px;">
+                <li><strong>Heures normales :</strong> Jusqu'à 35,00 heures par semaine.</li>
+                <li><strong>Heures supplémentaires majorées à 25% :</strong> De la 36ème à la 43ème heure incluses (soit jusqu'à 8 heures).</li>
+                <li><strong>Heures supplémentaires majorées à 50% :</strong> À partir de la 44ème heure hebdomadaire.</li>
+            </ul>
+        </div>
+
+        <div class="faq-item">
+            <h3>Outil gratuit et confidentialité des données</h3>
+            <p>Cet outil est 100% gratuit et s'exécute directement dans votre navigateur web. Aucune donnée saisie (horaires, taux horaire, rémunération) n'est envoyée vers un serveur ni stockée à votre insu, conformément aux normes de protection de la vie privée (RGPD).</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Convertisseur & Calculateur d'Heures Décimales | Tous droits réservés.</p>
+        <p style="margin-top: 6px;">
+            <a href="#" onclick="openModal('legal-modal'); return false;">Mentions Légales</a> | 
+            <a href="#" onclick="openModal('privacy-modal'); return false;">Politique de Confidentialité (RGPD)</a>
+        </p>
+    </footer>
+</div>
+
+<!-- Modal Mentions Légales -->
+<div id="legal-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('legal-modal')">&times;</span>
+        <h2 style="margin-bottom: 12px;">Mentions Légales</h2>
+        <p><strong>Éditeur du site :</strong> Micro-site d'utilité publique édité à titre indépendant.</p>
+        <p><strong>Hébergement :</strong> GitHub Pages, GitHub Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA.</p>
+        <p><strong>Propriété intellectuelle :</strong> Le code et les textes du site sont libres de droit d'usage à des fins d'information personnelle ou professionnelle.</p>
+        <p><strong>Avertissement :</strong> Ce calculateur fournit des estimations indicatives basées sur le régime légal standard. Pour toute situation spécifique ou convention collective particulière, veuillez consulter vos bulletins de paie officiels ou un juriste en droit du travail.</p>
+    </div>
+</div>
+
+<!-- Modal Politique de Confidentialité -->
+<div id="privacy-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('privacy-modal')">&times;</span>
+        <h2 style="margin-bottom: 12px;">Politique de Confidentialité & RGPD</h2>
+        <p><strong>Données personnelles :</strong> Ce site ne collecte, ne vend et ne conserve aucune donnée personnelle. Tous les calculs s'exécutent localement en JavaScript sur le périphérique de l'utilisateur.</p>
+        <p><strong>Cookies et Publicité :</strong> Ce site peut afficher des annonces via Google AdSense. Google utilise des cookies pour diffuser des annonces pertinentes en fonction des visites antérieures. Vous pouvez personnaliser vos choix de cookies publicitaires via les paramètres de votre navigateur ou sur les sites officiels de gestion du consentement.</p>
+    </div>
+</div>
+
+<script>
+    // --- Instant Converter JS ---
+    const hhmmInput = document.getElementById('hhmm-input');
+    const decimalInput = document.getElementById('decimal-input');
+    const instantRes = document.getElementById('instant-res');
+
+    function parseHHMM(str) {
+        if (!str) return null;
+        str = str.replace('h', ':').replace('H', ':');
+        const parts = str.split(':');
+        if (parts.length === 1) {
+            const h = parseFloat(parts[0]);
+            return isNaN(h) ? null : h;
+        }
+        const h = parseInt(parts[0], 10) || 0;
+        const m = parseInt(parts[1], 10) || 0;
+        return h + (m / 60);
+    }
+
+    function decimalToHHMM(dec) {
+        if (isNaN(dec) || dec < 0) return "0h 00m";
+        const hours = Math.floor(dec);
+        const mins = Math.round((dec - hours) * 60);
+        const formattedMins = mins < 10 ? '0' + mins : mins;
+        return `${hours}h ${formattedMins}m`;
+    }
+
+    hhmmInput.addEventListener('input', function() {
+        const dec = parseHHMM(this.value);
+        if (dec !== null) {
+            decimalInput.value = dec.toFixed(2);
+            instantRes.textContent = `${this.value} = ${dec.toFixed(2).replace('.', ',')} h (${decimalToHHMM(dec)})`;
+        } else {
+            instantRes.textContent = "Format invalide (ex: 07:45)";
+        }
+    });
+
+    decimalInput.addEventListener('input', function() {
+        const dec = parseFloat(this.value);
+        if (!isNaN(dec)) {
+            const timeStr = decimalToHHMM(dec);
+            hhmmInput.value = timeStr.replace(' ', '');
+            instantRes.textContent = `${dec.toFixed(2).replace('.', ',')} h = ${timeStr}`;
+        } else {
+            instantRes.textContent = "Saisissez un nombre décimal";
+        }
+    });
+
+    // --- Timesheet Table JS ---
+    const days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+    const defaultSchedule = [
+        { start: '08:00', end: '16:30', break: 30 }, // 8h
+        { start: '08:00', end: '16:30', break: 30 }, // 8h
+        { start: '08:00', end: '16:30', break: 30 }, // 8h
+        { start: '08:00', end: '16:30', break: 30 }, // 8h
+        { start: '08:00', end: '16:00', break: 30 }, // 7.5h -> Total 39.5h
+        { start: '', end: '', break: 0 },
+        { start: '', end: '', break: 0 }
+    ];
+
+    const timesheetBody = document.getElementById('timesheet-body');
+
+    function renderTimesheet() {
+        timesheetBody.innerHTML = '';
+        days.forEach((day, idx) => {
+            const sched = defaultSchedule[idx];
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><strong>${day}</strong></td>
+                <td><input type="time" id="start-${idx}" value="${sched.start}" onchange="calculateWeekly()"></td>
+                <td><input type="time" id="end-${idx}" value="${sched.end}" onchange="calculateWeekly()"></td>
+                <td><input type="number" id="break-${idx}" value="${sched.break}" min="0" style="width: 60px;" onchange="calculateWeekly()"></td>
+                <td id="row-total-${idx}" style="font-weight: 600; color: #1e293b;">0,00 h</td>
+            `;
+            timesheetBody.appendChild(tr);
+        });
+        calculateWeekly();
+    }
+
+    function calculateWeekly() {
+        let totalDec = 0;
+
+        days.forEach((day, idx) => {
+            const startVal = document.getElementById(`start-${idx}`).value;
+            const endVal = document.getElementById(`end-${idx}`).value;
+            const breakVal = parseInt(document.getElementById(`break-${idx}`).value, 10) || 0;
+            const rowCell = document.getElementById(`row-total-${idx}`);
+
+            if (startVal && endVal) {
+                const sDec = parseHHMM(startVal);
+                const eDec = parseHHMM(endVal);
+                if (sDec !== null && eDec !== null && eDec > sDec) {
+                    let diff = eDec - sDec - (breakVal / 60);
+                    if (diff < 0) diff = 0;
+                    rowCell.textContent = `${diff.toFixed(2).replace('.', ',')} h`;
+                    totalDec += diff;
+                } else {
+                    rowCell.textContent = '0,00 h';
+                }
+            } else {
+                rowCell.textContent = '0,00 h';
+            }
+        });
+
+        // Calculations for normal & overtime hours (France 35h base)
+        const weeklyTotalCell = document.getElementById('weekly-total');
+        weeklyTotalCell.textContent = `${totalDec.toFixed(2).replace('.', ',')} h (${decimalToHHMM(totalDec)})`;
+
+        const normalHours = Math.min(totalDec, 35.0);
+        const over25 = Math.max(0, Math.min(totalDec - 35.0, 8.0));
+        const over50 = Math.max(0, totalDec - 43.0);
+
+        const hourlyRate = parseFloat(document.getElementById('hourly-rate').value) || 0;
+
+        let detailsHTML = `
+            <strong>Décomposition du temps de travail :</strong><br>
+            • Heures normales (Base 35h) : <strong>${normalHours.toFixed(2).replace('.', ',')} h</strong><br>
+            • Heures sup. (+25% / 36e à 43e h) : <strong>${over25.toFixed(2).replace('.', ',')} h</strong><br>
+            • Heures sup. (+50% / 44e h et +) : <strong>${over50.toFixed(2).replace('.', ',')} h</strong>
+        `;
+
+        if (hourlyRate > 0) {
+            const basePay = normalHours * hourlyRate;
+            const pay25 = over25 * (hourlyRate * 1.25);
+            const pay50 = over50 * (hourlyRate * 1.50);
+            const totalGross = basePay + pay25 + pay50;
+
+            detailsHTML += `<br><br><strong>Estimation Rémunération Brute :</strong><br>
+                • Base : ${basePay.toFixed(2)} €<br>
+                ${over25 > 0 ? `• Majorées 25% (${(hourlyRate*1.25).toFixed(2)}€/h) : ${pay25.toFixed(2)} €<br>` : ''}
+                ${over50 > 0 ? `• Majorées 50% (${(hourlyRate*1.50).toFixed(2)}€/h) : ${pay50.toFixed(2)} €<br>` : ''}
+                👉 <strong>Total Brut Estime : ${totalGross.toFixed(2)} €</strong>
+            `;
+        }
+
+        document.getElementById('weekly-details').innerHTML = detailsHTML;
+    }
+
+    document.getElementById('hourly-rate').addEventListener('input', calculateWeekly);
+
+    function resetTimesheet() {
+        days.forEach((_, idx) => {
+            document.getElementById(`start-${idx}`).value = '';
+            document.getElementById(`end-${idx}`).value = '';
+            document.getElementById(`break-${idx}`).value = '0';
+        });
+        calculateWeekly();
+    }
+
+    function copySummary() {
+        const totalText = document.getElementById('weekly-total').textContent;
+        const detailsText = document.getElementById('weekly-details').innerText;
+        const textToCopy = `--- Résumé Temps de Travail Hebdomadaire ---\nTotal : ${totalText}\n\n${detailsText}`;
+        
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            alert('Résumé copié dans le presse-papier !');
+        }).catch(() => {
+            alert('Erreur lors de la copie.');
+        });
+    }
+
+    function openModal(id) {
+        document.getElementById(id).style.display = 'flex';
+    }
+
+    function closeModal(id) {
+        document.getElementById(id).style.display = 'none';
+    }
+
+    // Initialize
+    renderTimesheet();
+</script>
+
+</body>
+</html>
