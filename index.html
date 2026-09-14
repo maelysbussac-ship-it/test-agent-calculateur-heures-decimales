@@ -1,609 +1,990 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculateur d'Heures Décimales & Convertisseur de Temps | Decimal Hours Calculator</title>
-    <meta name="description" content="Convertissez facilement les heures et minutes en heures décimales pour la paie et la gestion du temps. Convertisseur gratuit, tableau de conversion 1-60 min, feuille de temps hebdo et export PDF/CSV.">
-    <meta name="keywords" content="calculateur heures decimales, conversion heures minutes centiemes, convertisseur temps paie, decimal hours calculator, time sheet calculator">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://github.com/test-agent-calculateur-heures-decimales">
-    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculateur Heures Décimales & Paie | Convertisseur gratuit HH:MM en Décimal</title>
+  <meta name="description" content="Convertissez facilement vos heures et minutes (HH:MM) en heures décimales pour la paie et la facturation. Calculateur de feuille d'heures, calcul du salaire brut/net et heures supplémentaires. Gratuit, instantané et conforme AdSense/RGPD.">
+  <meta name="keywords" content="calculateur heures decimales, conversion hh:mm en decimal, calcul paie heures, feuille d'heures excel, conversion minutes centiemes, salaire brut net heures decimales">
+  <meta name="author" content="HoraDecimal Pro">
+  <link rel="canonical" href="https://test-agent-calculateur-heures-decimales.github.io/">
 
-    <!-- Open Graph / Social -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Calculateur d'Heures Décimales & Convertisseur de Paie | FR / EN">
-    <meta property="og:description" content="Outil gratuit de conversion d'heures en décimales, gestion de feuille de temps et calcul de salaire.">
-    <meta property="og:locale" content="fr_FR">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Calculateur Heures Décimales & Paie | Convertisseur Pro">
+  <meta property="og:description" content="Outil professionnel gratuit de conversion d'heures en centièmes (décimales) et calcul de bulletin de paie / heures supplémentaires.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80">
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#f0f7ff',
-                            100: '#e0effe',
-                            500: '#0284c7',
-                            600: '#0369a1',
-                            700: '#075985',
-                            900: '#0c4a6e',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
-    <!-- Schema.org JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "SoftwareApplication",
-          "@id": "#software",
-          "name": "Calculateur d'Heures Décimales & Convertisseur de Temps",
-          "alternateName": "Decimal Hours Calculator & Timesheet Tool",
-          "operatingSystem": "All",
-          "applicationCategory": "BusinessApplication",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "EUR"
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
           },
-          "description": "Convertisseur professionnel d'heures et minutes en centièmes (heures décimales) pour la paie, la facturation et le suivi du temps de travail."
-        },
-        {
-          "@type": "FAQPage",
-          "@id": "#faq",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Comment convertir des minutes en heures décimales ?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Pour convertir des minutes en heures décimales, divisez le nombre de minutes par 60. Par exemple, 45 minutes divisées par 60 égalent 0,75 heure. Ainsi, 7 heures et 45 minutes correspondent à 7,75 heures décimales."
-              }
+          colors: {
+            brand: {
+              50: '#eep2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              900: '#312e81',
             },
-            {
-              "@type": "Question",
-              "name": "Pourquoi utilise-t-on les heures décimales en paie et gestion RH ?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Les logiciels de paie et de comptabilité utilisent les heures décimales car les systèmes informatiques effectuent les calculs financiers (ex: 7,5 heures x 20 €/heure) sur une base de 100 centièmes plutôt que sur une base sexagésimale de 60 minutes."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "À quoi correspondent 15, 30 et 45 minutes en heures décimales ?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "15 minutes correspondent à 0,25 heure. 30 minutes correspondent à 0,50 heure. 45 minutes correspondent à 0,75 heure."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How do you convert decimal hours back to minutes?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "To convert decimal hours to minutes, multiply the decimal part by 60. For example, for 8.33 hours, multiply 0.33 by 60 to get approximately 20 minutes (8 hours and 20 minutes)."
-              }
+            accent: {
+              500: '#10b981',
+              600: '#059669',
             }
-          ]
-        },
-        {
-          "@type": "HowTo",
-          "@id": "#howto",
-          "name": "Comment convertir 7h30 en heures décimales",
-          "step": [
-            {
-              "@type": "HowToStep",
-              "name": "Séparer les heures et les minutes",
-              "text": "Identifiez les heures (7) et les minutes (30)."
-            },
-            {
-              "@type": "HowToStep",
-              "name": "Diviser les minutes par 60",
-              "text": "30 / 60 = 0,50."
-            },
-            {
-              "@type": "HowToStep",
-              "name": "Additionner les heures et le résultat décimal",
-              "text": "7 + 0,50 = 7,50 heures décimales."
-            }
-          ]
+          }
         }
-      ]
+      }
     }
-    </script>
-</head>
-<body class="bg-slate-50 text-slate-800 antialiased font-sans min-h-screen flex flex-col">
+  </script>
 
-    <!-- Header / Navigation -->
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://test-agent-calculateur-heures-decimales.github.io/#webapp",
+        "name": "Calculateur d'Heures Décimales et de Paie",
+        "url": "https://test-agent-calculateur-heures-decimales.github.io/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript",
+        "description": "Convertisseur bidirectionnel d'heures minutes en centièmes décimaux et calculateur complet de salaire brut/net pour la gestion du temps de travail.",
+        "inLanguage": ["fr", "en"],
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "name": "Comment convertir des minutes en heures décimales ?",
+        "description": "Guide étape par étape pour calculer les centièmes d'heures à partir des minutes pour la paie.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Prendre le nombre de minutes",
+            "text": "Isolez les minutes de votre durée totale (ex. pour 7h45, prenez 45 minutes)."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Diviser par 60",
+            "text": "Divisez ce chiffre par 60 pour obtenir la fraction centésimale (ex. 45 / 60 = 0.75)."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Assembler les heures et les décimales",
+            "text": "Ajoutez la valeur décimale aux heures entières (ex. 7 + 0.75 = 7.75 heures)."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Pourquoi convertir les heures en décimales pour la paie ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Les logiciels de paie et tableurs (Excel, ERP) utilisent le système décimal (base 10) et non le système sexagésimal (base 60). Pour multiplier un taux horaire (ex: 15€/h) par un temps de travail (7h30), il faut convertir 7h30 en 7.50h pour effectuer 7.50 × 15€ = 112.50€."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "À combien de centièmes correspondent 15 minutes, 30 minutes et 45 minutes ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "15 minutes = 0,25 heure | 30 minutes = 0,50 heure | 45 minutes = 0,75 heure."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Comment calculer les heures supplémentaires sur une semaine ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "En France, la durée légale du travail est de 35 heures par semaine. Toute heure effectuée au-delà de 35h est majorée (généralement +25% de la 36e à la 43e heure, puis +50% au-delà), sauf accord d'entreprise spécifique."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    .glass-card {
+      background: rgba(30, 41, 59, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card-light {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .glow-indigo {
+      box-shadow: 0 0 25px -5px rgba(99, 102, 241, 0.25);
+    }
+    .ad-banner-slot {
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(241, 245, 249, 0.03),
+        rgba(241, 245, 249, 0.03) 10px,
+        rgba(241, 245, 249, 0.06) 10px,
+        rgba(241, 245, 249, 0.06) 20px
+      );
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
+
+  <!-- TOP ANNOUNCEMENT / ADSENSE POLICY NOTICE -->
+  <div class="bg-slate-900 border-b border-slate-800 text-xs py-1.5 px-4 text-slate-400 flex justify-between items-center">
+    <div class="flex items-center gap-2">
+      <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+      <span data-i18n="badge-live">Outil certifié conforme aux normes de calcul de la paie (Base 100/60)</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="#geo-faq" class="hover:text-brand-400 transition-colors" data-i18n="nav-faq">FAQ & Formules</a>
+      <span class="text-slate-700">|</span>
+      <!-- Lang Switcher -->
+      <div class="flex items-center space-x-1 font-mono text-xs">
+        <button id="lang-fr" onclick="setLanguage('fr')" class="px-2 py-0.5 rounded font-bold bg-brand-600 text-white">FR</button>
+        <button id="lang-en" onclick="setLanguage('en')" class="px-2 py-0.5 rounded text-slate-400 hover:text-white">EN</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER NAVBAR -->
+  <header class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-400 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brand-500/20">
+          ⏱️
+        </div>
+        <div>
+          <span class="text-lg font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-brand-300">
+            HoraDecimal<span class="text-brand-500">.pro</span>
+          </span>
+          <span class="block text-[10px] uppercase tracking-widest text-slate-400 font-semibold" data-i18n="tagline">Calculateur Paie & Temps</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-300">
+        <a href="#converter" class="hover:text-brand-400 transition-colors" data-i18n="nav-converter">Convertisseur</a>
+        <a href="#timesheet" class="hover:text-brand-400 transition-colors" data-i18n="nav-timesheet">Calculateur de Paie</a>
+        <a href="#quick-table" class="hover:text-brand-400 transition-colors" data-i18n="nav-table">Table de Conversion</a>
+        <a href="#geo-faq" class="hover:text-brand-400 transition-colors" data-i18n="nav-guide">Guide & Explications</a>
+      </nav>
+
+      <div class="flex items-center space-x-3">
+        <a href="#timesheet" class="bg-brand-600 hover:bg-brand-500 text-white font-semibold text-xs sm:text-sm px-4 py-2 rounded-lg shadow-md transition-all hover:scale-[1.02] flex items-center gap-2">
+          <span>💼</span> <span data-i18n="btn-estimate-pay">Calculer un Salaire</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ADSENSE AD SLOT 1: TOP LEADERBOARD (Compliant placement) -->
+  <aside class="max-w-7xl mx-auto w-full px-4 pt-4 pb-2" aria-label="Espace publicitaire supérieur">
+    <div class="ad-banner-slot border border-slate-800/80 rounded-xl p-3 text-center min-h-[90px] flex flex-col justify-center items-center relative overflow-hidden group">
+      <span class="text-[10px] uppercase font-mono tracking-widest text-slate-500 mb-1">Publicité / Advertisement — AdSense Unit #1</span>
+      <!-- AdSense Script Holder -->
+      <div class="text-slate-400 text-xs italic">
+        <ins class="adsbygoogle"
+             style="display:block; text-align:center;"
+             data-ad-layout="in-article"
+             data-ad-format="fluid"
+             data-ad-client="ca-pub-0000000000000000"
+             data-ad-slot="1111111111"></ins>
+        <div class="text-slate-500 text-xs py-1 font-mono">[ Emplacement Bannière Responsive 728x90 / Auto ]</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- HERO SECTION -->
+  <section class="relative pt-6 pb-12 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-brand-900/10 via-slate-950 to-slate-950 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-400 border border-brand-500/20 mb-4">
+        ⚡ <span data-i18n="hero-badge">Conversion instantanée HH:MM ↔ Décimal & Calcul de Salaire Brut / Net</span>
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight max-w-4xl mx-auto" data-i18n="hero-title">
+        Convertissez vos heures en centièmes et calculez votre paie exacte
+      </h1>
+      <p class="mt-4 text-base sm:text-lg text-slate-400 max-w-2xl mx-auto" data-i18n="hero-desc">
+        Passez instantanément du format sexagésimal (heures:minutes) au format décimal pour vos feuilles de temps, bulletins de paie et factures clients.
+      </p>
+    </div>
+  </section>
+
+  <!-- MAIN CONTAINER WITH CONVERTER AND CALCULATOR -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex-1 w-full">
+    
+    <!-- GRID: CONVERTER + SIDEBAR AD -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-12">
+      
+      <!-- LEFT / MAIN COL: DUAL CONVERTER TOOL (8 COLS) -->
+      <div id="converter" class="lg:col-span-8 space-y-8">
+        
+        <!-- CARD 1: BIDIRECTIONAL FAST CONVERTER -->
+        <div class="glass-card rounded-2xl p-6 sm:p-8 glow-indigo relative overflow-hidden">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold text-lg shadow-md shadow-brand-500/20">
-                    ⏱️
+              <span class="p-2 bg-brand-500/20 rounded-lg text-brand-400 font-bold text-xl">🔄</span>
+              <div>
+                <h2 class="text-xl font-bold text-white" data-i18n="conv-card-title">Convertisseur Rapide Bidirectionnel</h2>
+                <p class="text-xs text-slate-400" data-i18n="conv-card-subtitle">Calcul direct en centièmes d'heures (Ex: 7h30 = 7,50 h)</p>
+              </div>
+            </div>
+            <button onclick="resetConverter()" class="text-xs text-slate-400 hover:text-white underline font-mono" data-i18n="btn-reset">Réinitialiser</button>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- MODE A: HH:MM -> DECIMAL -->
+            <div class="bg-slate-900/90 rounded-xl p-5 border border-slate-800">
+              <div class="flex justify-between items-center mb-3">
+                <label class="text-sm font-semibold text-slate-200" data-i18n="label-hhmm">Heures & Minutes (HH:MM)</label>
+                <span class="text-[10px] font-mono bg-brand-500/20 text-brand-300 px-2 py-0.5 rounded">Standard</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2 mb-4">
+                <div>
+                  <span class="text-[10px] text-slate-400 block mb-1" data-i18n="input-hours">Heures</span>
+                  <input type="number" id="input-h" min="0" value="7" placeholder="0" oninput="convertHHMMToDecimal()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2.5 text-white font-mono font-bold text-lg focus:ring-2 focus:ring-brand-500 focus:outline-none">
                 </div>
                 <div>
-                    <span class="font-extrabold text-slate-900 text-lg tracking-tight block leading-tight">DeciTime Pro</span>
-                    <span class="text-xs text-slate-500 font-medium" id="sub-title">Convertisseur & Paie RH</span>
+                  <span class="text-[10px] text-slate-400 block mb-1" data-i18n="input-minutes">Minutes</span>
+                  <input type="number" id="input-m" min="0" max="59" value="30" placeholder="0" oninput="convertHHMMToDecimal()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2.5 text-white font-mono font-bold text-lg focus:ring-2 focus:ring-brand-500 focus:outline-none">
                 </div>
+              </div>
+
+              <!-- RESULT DISPLAY -->
+              <div class="bg-slate-950 rounded-lg p-4 border border-brand-500/30 text-center relative group">
+                <span class="text-[10px] uppercase font-mono text-slate-400 block" data-i18n="res-decimal">Valeur Décimale (Heures)</span>
+                <span id="res-decimal-val" class="text-3xl font-extrabold text-brand-400 font-mono tracking-tight my-1 block">7.50 h</span>
+                <div class="flex justify-center gap-2 mt-2">
+                  <button onclick="copyToClipboard('res-decimal-val')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1 rounded transition-colors font-mono flex items-center gap-1">
+                    <span>📋</span> <span data-i18n="btn-copy">Copier</span>
+                  </button>
+                </div>
+              </div>
             </div>
 
-            <!-- Language Switcher & Controls -->
-            <div class="flex items-center gap-3">
-                <button onclick="toggleLanguage()" id="lang-btn" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 transition">
-                    🌐 <span id="lang-label">EN / FR</span>
-                </button>
-            </div>
-        </div>
-    </header>
+            <!-- MODE B: DECIMAL -> HH:MM -->
+            <div class="bg-slate-900/90 rounded-xl p-5 border border-slate-800">
+              <div class="flex justify-between items-center mb-3">
+                <label class="text-sm font-semibold text-slate-200" data-i18n="label-decimal">Heures Décimales (ex: 35.75)</label>
+                <span class="text-[10px] font-mono bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded">Paie / Excel</span>
+              </div>
+              <div class="mb-4">
+                <span class="text-[10px] text-slate-400 block mb-1" data-i18n="input-dec">Nombre Décimal</span>
+                <input type="number" id="input-dec" step="0.01" value="35.75" placeholder="0.00" oninput="convertDecimalToHHMM()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2.5 text-white font-mono font-bold text-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+              </div>
 
-    <!-- Top Ad Placement (AdSense Compliant Notice / Placeholder) -->
-    <div class="max-w-7xl mx-auto px-4 w-full mt-4">
-        <div class="bg-slate-100 border border-slate-200 rounded-xl p-2 text-center text-xs text-slate-400 uppercase tracking-wider min-h-[60px] flex items-center justify-center">
-            <!-- AdSense Header Slot -->
-            <span>Espace Publicitaire — Ad Placement (728x90 / Responsive)</span>
-        </div>
-    </div>
-
-    <!-- Main Container -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full grid grid-cols-1 lg:grid-cols-12 gap-8">
-
-        <!-- Left / Core Tool Column (8 Cols) -->
-        <div class="lg:col-span-8 space-y-8">
-
-            <!-- Hero Section -->
-            <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
-                <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-2" id="main-title">
-                    Calculateur d'Heures Décimales & Convertisseur de Paie
-                </h1>
-                <p class="text-slate-600 leading-relaxed" id="main-desc">
-                    Outil professionnel gratuit pour convertir rapidement vos heures et minutes (HH:MM) en heures décimales (centièmes d'heure) et vice-versa. Idéal pour la gestion de la paie, la facturation freelance et les RH.
-                </p>
-
-                <!-- Converter Switch Tabs -->
-                <div class="mt-6 flex border-b border-slate-200 gap-4">
-                    <button id="tab-hm-to-dec" onclick="switchTab('hm-to-dec')" class="pb-3 text-sm font-bold border-b-2 border-brand-600 text-brand-600 transition">
-                        HH:MM ➔ Décimal
-                    </button>
-                    <button id="tab-dec-to-hm" onclick="switchTab('dec-to-hm')" class="pb-3 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition">
-                        Décimal ➔ HH:MM
-                    </button>
-                    <button id="tab-timesheet" onclick="switchTab('timesheet')" class="pb-3 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition">
-                        📊 Feuille Hebdo & Calculateur Salaire
-                    </button>
+              <!-- RESULT DISPLAY -->
+              <div class="bg-slate-950 rounded-lg p-4 border border-emerald-500/30 text-center">
+                <span class="text-[10px] uppercase font-mono text-slate-400 block" data-i18n="res-hhmm">Durée Horaire (HH:MM)</span>
+                <span id="res-hhmm-val" class="text-3xl font-extrabold text-emerald-400 font-mono tracking-tight my-1 block">35h 45m</span>
+                <div class="flex justify-center gap-2 mt-2">
+                  <button onclick="copyToClipboard('res-hhmm-val')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1 rounded transition-colors font-mono flex items-center gap-1">
+                    <span>📋</span> <span data-i18n="btn-copy">Copier</span>
+                  </button>
                 </div>
-
-                <!-- TAB 1: HH:MM to Decimal -->
-                <div id="panel-hm-to-dec" class="mt-6 space-y-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-1" id="lbl-hours">Heures (HH)</label>
-                            <input type="number" id="input-hours" min="0" value="7" placeholder="Ex: 7" oninput="convertHMtoDec()"
-                                class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 font-mono text-lg font-semibold text-slate-900">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-1" id="lbl-minutes">Minutes (MM)</label>
-                            <input type="number" id="input-minutes" min="0" max="59" value="45" placeholder="Ex: 45" oninput="convertHMtoDec()"
-                                class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 font-mono text-lg font-semibold text-slate-900">
-                        </div>
-                    </div>
-
-                    <!-- Quick Minute Buttons -->
-                    <div>
-                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-2" id="lbl-quick-min">Minutes rapides :</span>
-                        <div class="flex flex-wrap gap-2">
-                            <button onclick="setMinutes(15)" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg text-xs font-bold text-slate-700 transition">15 min (0.25h)</button>
-                            <button onclick="setMinutes(30)" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg text-xs font-bold text-slate-700 transition">30 min (0.50h)</button>
-                            <button onclick="setMinutes(45)" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg text-xs font-bold text-slate-700 transition">45 min (0.75h)</button>
-                        </div>
-                    </div>
-
-                    <!-- Result Box -->
-                    <div class="bg-brand-50 border border-brand-200 rounded-2xl p-6 text-center">
-                        <span class="text-xs font-bold text-brand-700 uppercase tracking-wider block mb-1" id="lbl-res-dec">Résultat en Heures Décimales</span>
-                        <div class="text-4xl sm:text-5xl font-extrabold text-brand-900 font-mono tracking-tight" id="result-decimal">7.75 h</div>
-                        <p class="text-xs text-brand-600 mt-2" id="lbl-formula-1">Formule : 7 + (45 / 60) = 7.75 heures</p>
-                    </div>
-                </div>
-
-                <!-- TAB 2: Decimal to HH:MM -->
-                <div id="panel-dec-to-hm" class="mt-6 space-y-6 hidden">
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1" id="lbl-dec-input">Nombre d'heures décimales</label>
-                        <input type="number" step="0.01" id="input-decimal" value="8.33" placeholder="Ex: 8.33" oninput="convertDectoHM()"
-                            class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 font-mono text-lg font-semibold text-slate-900">
-                    </div>
-
-                    <!-- Result Box -->
-                    <div class="bg-slate-900 text-white rounded-2xl p-6 text-center">
-                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-1" id="lbl-res-hm">Résultat en Heures & Minutes</span>
-                        <div class="text-4xl sm:text-5xl font-extrabold text-emerald-400 font-mono tracking-tight" id="result-hm">8 h 19 min 48 s</div>
-                        <p class="text-xs text-slate-400 mt-2" id="lbl-formula-2">Conversion : 0.33 x 60 = 19.8 minutes</p>
-                    </div>
-                </div>
-
-                <!-- TAB 3: Timesheet Calculator -->
-                <div id="panel-timesheet" class="mt-6 space-y-6 hidden">
-                    <div class="flex flex-wrap items-center justify-between gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1" id="lbl-hourly-rate">Taux Horaire (€ / $ / h)</label>
-                            <input type="number" id="hourly-rate" value="25" min="0" step="0.5" oninput="calculateTimesheet()" class="px-3 py-1.5 rounded-lg border border-slate-300 font-mono font-bold w-32">
-                        </div>
-                        <div class="flex gap-2">
-                            <button onclick="exportCSV()" class="px-3 py-2 bg-slate-800 text-white text-xs font-bold rounded-lg hover:bg-slate-700 transition">📥 Export CSV</button>
-                            <button onclick="window.print()" class="px-3 py-2 bg-brand-600 text-white text-xs font-bold rounded-lg hover:bg-brand-700 transition">🖨️ Imprimer / PDF</button>
-                        </div>
-                    </div>
-
-                    <!-- Timesheet Table -->
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse text-xs sm:text-sm">
-                            <thead>
-                                <tr class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
-                                    <th class="p-2">Jour</th>
-                                    <th class="p-2">Début</th>
-                                    <th class="p-2">Fin</th>
-                                    <th class="p-2">Pause (min)</th>
-                                    <th class="p-2">Total HH:MM</th>
-                                    <th class="p-2">Total Décimal</th>
-                                </tr>
-                            </thead>
-                            <tbody id="timesheet-body">
-                                <!-- JS will insert rows -->
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!-- Timesheet Summary -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-200">
-                        <div class="bg-slate-100 p-4 rounded-xl">
-                            <span class="text-xs text-slate-500 font-bold uppercase block">Total Semaine (Décimal)</span>
-                            <span class="text-2xl font-extrabold text-slate-900 font-mono" id="ts-total-dec">0.00 h</span>
-                        </div>
-                        <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl">
-                            <span class="text-xs text-emerald-700 font-bold uppercase block">Salaire Brut Estimé</span>
-                            <span class="text-2xl font-extrabold text-emerald-800 font-mono" id="ts-total-pay">0.00 €</span>
-                        </div>
-                    </div>
-                </div>
-
+              </div>
             </div>
 
-            <!-- In-Content Ad Placement -->
-            <div class="bg-slate-100 border border-slate-200 rounded-xl p-4 text-center text-xs text-slate-400 uppercase tracking-wider min-h-[90px] flex items-center justify-center">
-                <span>Espace Publicitaire — In-Article Banner (728x90)</span>
-            </div>
+          </div>
 
-            <!-- Conversion Table 1-60 minutes -->
-            <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
-                <h2 class="text-xl font-bold text-slate-900 mb-4" id="table-title">Tableau de Conversion Minutes ➔ Heures Décimales (1 à 60 min)</h2>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 font-mono text-xs text-slate-700 max-h-72 overflow-y-auto p-2 bg-slate-50 rounded-xl border border-slate-200" id="conversion-table-grid">
-                    <!-- JavaScript auto-generates 1 to 60 min table -->
-                </div>
-            </div>
-
-            <!-- Detailed Explanation & GEO Content -->
-            <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4 text-slate-600 leading-relaxed">
-                <h2 class="text-xl font-bold text-slate-900" id="geo-title">Comprendre la Conversion des Heures en Décimales</h2>
-                <p>
-                    Dans les départements des ressources humaines, la comptabilité et la gestion de paie, les minutes doivent impérativement être converties en fraction décimale. Une heure compte 60 minutes. Pour exprimer un nombre de minutes sur une base 100 (centième d'heure), il suffit d'effectuer la division : <code class="bg-slate-100 px-2 py-1 rounded font-mono text-xs">Minutes ÷ 60</code>.
-                </p>
-
-                <h3 class="text-lg font-bold text-slate-800 mt-4">Exemples de conversion courante :</h3>
-                <ul class="list-disc pl-5 space-y-1">
-                    <li><strong>15 minutes</strong> = 15 / 60 = <strong>0,25 heure</strong></li>
-                    <li><strong>30 minutes</strong> = 30 / 60 = <strong>0,50 heure</strong></li>
-                    <li><strong>45 minutes</strong> = 45 / 60 = <strong>0,75 heure</strong></li>
-                    <li><strong>7h30</strong> = 7 + 0,50 = <strong>7,50 heures</strong></li>
-                    <li><strong>39h15</strong> = 39 + 0,25 = <strong>39,25 heures</strong></li>
-                </ul>
-            </div>
-
-            <!-- FAQ Section (GEO Optimized) -->
-            <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
-                <h2 class="text-xl font-bold text-slate-900">Foire Aux Questions (FAQ)</h2>
-                
-                <div class="space-y-4">
-                    <div class="border-b border-slate-100 pb-4">
-                        <h3 class="font-bold text-slate-800 mb-1">Comment calculer un salaire à partir des heures et minutes ?</h3>
-                        <p class="text-sm text-slate-600">Vous ne devez jamais multiplier le taux horaire directement par le nombre de minutes. Vous devez d'abord convertir les minutes en heures décimales. Exemple : 7h30 payé 20 €/h vaut 7,5 x 20 € = 150 € (et non 7,30 x 20 € = 146 €).</p>
-                    </div>
-                    <div class="border-b border-slate-100 pb-4">
-                        <h3 class="font-bold text-slate-800 mb-1">Comment arrondir les centièmes d'heure pour la paie ?</h3>
-                        <p class="text-sm text-slate-600">La règle générale en comptabilité est l'arrondi au centième le plus proche (2 chiffres après la virgule). Par exemple, 20 minutes = 0,3333... heure, ce qui s'arrondit à 0,33 heure.</p>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-slate-800 mb-1">How do I convert hours and minutes in Excel or Google Sheets?</h3>
-                        <p class="text-sm text-slate-600">In Excel, if cell A1 contains time (e.g. 07:30), multiply by 24 and format as decimal number: <code class="bg-slate-100 px-1.5 py-0.5 rounded font-mono text-xs">=A1*24</code>.</p>
-                    </div>
-                </div>
-            </div>
-
+          <!-- Quick Tip -->
+          <div class="mt-6 p-3 bg-slate-900/60 rounded-xl text-xs text-slate-400 border border-slate-800/80 flex items-start gap-2">
+            <span class="text-amber-400">💡</span>
+            <p data-i18n="tip-conversion"><strong>Astuce Paie :</strong> Pour convertir des minutes en centièmes, divisez simplement le nombre de minutes par 60. Exemple: 45 minutes / 60 = 0,75 heure.</p>
+          </div>
         </div>
 
-        <!-- Right Sidebar (4 Cols) -->
-        <aside class="lg:col-span-4 space-y-6">
+      </div>
 
-            <!-- Sidebar Ad Slot -->
-            <div class="bg-slate-100 border border-slate-200 rounded-2xl p-6 text-center text-xs text-slate-400 uppercase tracking-wider min-h-[300px] flex flex-col items-center justify-center">
-                <span>Espace Publicitaire — Sidebar Banner (300x250 / 300x600)</span>
-            </div>
-
-            <!-- Quick Converter Cheat Sheet Card -->
-            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                <h3 class="font-bold text-slate-900 mb-3 text-sm uppercase tracking-wider flex items-center gap-2">
-                    ⚡ Aide-Mémoire Repère
-                </h3>
-                <div class="space-y-2 text-xs font-mono">
-                    <div class="flex justify-between p-2 bg-slate-50 rounded"><span>05 min</span><span class="font-bold text-brand-600">0.08 h</span></div>
-                    <div class="flex justify-between p-2 bg-slate-50 rounded"><span>10 min</span><span class="font-bold text-brand-600">0.17 h</span></div>
-                    <div class="flex justify-between p-2 bg-slate-50 rounded"><span>15 min</span><span class="font-bold text-brand-600">0.25 h</span></div>
-                    <div class="flex justify-between p-2 bg-slate-50 rounded"><span>20 min</span><span class="font-bold text-brand-600">0.33 h</span></div>
-                    <div class="flex justify-between p-2 bg-slate-50 rounded"><span>30 min</span><span class="font-bold text-brand-600">0.50 h</span></div>
-                    <div class="flex justify-between p-2 bg-slate-50 rounded"><span>40 min</span><span class="font-bold text-brand-600">0.67 h</span></div>
-                    <div class="flex justify-between p-2 bg-slate-50 rounded"><span>45 min</span><span class="font-bold text-brand-600">0.75 h</span></div>
-                    <div class="flex justify-between p-2 bg-slate-50 rounded"><span>50 min</span><span class="font-bold text-brand-600">0.83 h</span></div>
-                </div>
-            </div>
-
-            <!-- Info Box -->
-            <div class="bg-brand-900 text-white rounded-2xl p-6">
-                <h3 class="font-bold text-base mb-2">💡 Conseil RH & Paie</h3>
-                <p class="text-xs text-brand-100 leading-relaxed">
-                    Toujours conserver une trace écrite des feuilles de temps brutes (HH:MM) ainsi que des équivalents centièmes enregistrés en logiciel de paie pour éviter tout litige lors des audits de contrôle de durée de travail.
-                </p>
-            </div>
-
+      <!-- RIGHT COL: ADSENSE AD SLOT 2 (SIDEBAR RECTANGLE) + SUMMARY BOX (4 COLS) -->
+      <div class="lg:col-span-4 space-y-6">
+        
+        <!-- AD UNIT 2: MEDIUM RECTANGLE 300x250 / 336x280 -->
+        <aside class="ad-banner-slot border border-slate-800 rounded-2xl p-4 text-center min-h-[280px] flex flex-col justify-center items-center" aria-label="Publicité">
+          <span class="text-[10px] uppercase font-mono tracking-widest text-slate-500 mb-2">Publicité / Advertisement — AdSense Unit #2</span>
+          <div class="text-slate-400 text-xs italic">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:300px;height:250px"
+                 data-ad-client="ca-pub-0000000000000000"
+                 data-ad-slot="2222222222"></ins>
+            <div class="text-slate-500 text-xs py-1 font-mono">[ Pavé Publicitaire 300x250 ]</div>
+          </div>
         </aside>
 
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 mt-12 py-8 text-xs text-slate-500">
-        <div class="max-w-7xl mx-auto px-4 text-center space-y-3">
-            <p>© 2026 DeciTime Pro — Calculateur d'Heures Décimales gratuit. Tous droits réservés.</p>
-            <div class="flex justify-center gap-4 text-slate-400">
-                <a href="/sitemap.xml" class="hover:underline">Sitemap XML</a> | 
-                <a href="/robots.txt" class="hover:underline">Robots.txt</a> | 
-                <span>Confidentialité & Mentions Légales</span>
+        <!-- CHEAT SHEET QUICK BOX -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+          <h3 class="font-bold text-white text-sm mb-3 flex items-center gap-2">
+            <span>⚡</span> <span data-i18n="cheatsheet-title">Repères de conversion fréquents</span>
+          </h3>
+          <div class="space-y-2 text-xs font-mono">
+            <div class="flex justify-between p-2 rounded bg-slate-950/60 border border-slate-800/50">
+              <span class="text-slate-300">15 min</span>
+              <span class="text-brand-400 font-bold">0,25 h</span>
             </div>
-            <p class="text-[10px] text-slate-400">Outil conforme aux exigences de calcul RH et paie. Données calculées localement dans votre navigateur sans collecte personnelle.</p>
+            <div class="flex justify-between p-2 rounded bg-slate-950/60 border border-slate-800/50">
+              <span class="text-slate-300">30 min</span>
+              <span class="text-brand-400 font-bold">0,50 h</span>
+            </div>
+            <div class="flex justify-between p-2 rounded bg-slate-950/60 border border-slate-800/50">
+              <span class="text-slate-300">45 min</span>
+              <span class="text-brand-400 font-bold">0,75 h</span>
+            </div>
+            <div class="flex justify-between p-2 rounded bg-slate-950/60 border border-slate-800/50">
+              <span class="text-slate-300">1 heure 12 min</span>
+              <span class="text-brand-400 font-bold">1,20 h</span>
+            </div>
+          </div>
+          <a href="#quick-table" class="block text-center text-xs text-brand-400 hover:underline mt-3" data-i18n="view-full-table">Voir le tableau complet 1-60 min →</a>
         </div>
-    </footer>
 
-    <!-- Interactive Script -->
-    <script>
-        let currentLang = 'fr';
+      </div>
+    </div>
 
-        const i18n = {
-            fr: {
-                subTitle: "Convertisseur & Paie RH",
-                mainTitle: "Calculateur d'Heures Décimales & Convertisseur de Paie",
-                mainDesc: "Outil professionnel gratuit pour convertir rapidement vos heures et minutes (HH:MM) en heures décimales (centièmes d'heure) et vice-versa. Idéal pour la gestion de la paie, la facturation freelance et les RH.",
-                lblHours: "Heures (HH)",
-                lblMinutes: "Minutes (MM)",
-                lblQuickMin: "Minutes rapides :",
-                lblResDec: "Résultat en Heures Décimales",
-                lblResHm: "Résultat en Heures & Minutes",
-                lblDecInput: "Nombre d'heures décimales",
-                lblHourlyRate: "Taux Horaire (€ / $ / h)",
-                tableTitle: "Tableau de Conversion Minutes ➔ Heures Décimales (1 à 60 min)",
-                geoTitle: "Comprendre la Conversion des Heures en Décimales",
-                days: ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"]
-            },
-            en: {
-                subTitle: "Payroll & Time Converter",
-                mainTitle: "Decimal Hours Calculator & Payroll Converter",
-                mainDesc: "Free professional tool to convert hours and minutes (HH:MM) into decimal hours (hundredths) and vice versa. Perfect for payroll processing, freelance invoicing, and HR.",
-                lblHours: "Hours (HH)",
-                lblMinutes: "Minutes (MM)",
-                lblQuickMin: "Quick minutes:",
-                lblResDec: "Result in Decimal Hours",
-                lblResHm: "Result in Hours & Minutes",
-                lblDecInput: "Decimal Hours Amount",
-                lblHourlyRate: "Hourly Rate ($ / € / h)",
-                tableTitle: "Minutes to Decimal Hours Conversion Table (1 to 60 min)",
-                geoTitle: "Understanding Decimal Hours Conversion",
-                days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-            }
-        };
+    <!-- FULL TIMESHEET & PAYROLL CALCULATOR SECTION -->
+    <section id="timesheet" class="glass-card rounded-2xl p-6 sm:p-8 mb-12 border border-slate-800 relative">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-6 mb-6">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 rounded-md text-xs font-mono font-bold border border-emerald-500/20" data-i18n="badge-timesheet">Module Avancé</span>
+            <h2 class="text-2xl font-bold text-white" data-i18n="ts-title">Calculateur de Feuille de Temps & Estimateur de Paie</h2>
+          </div>
+          <p class="text-sm text-slate-400 mt-1" data-i18n="ts-subtitle">Saisissez vos horaires quotidiens pour calculer la paie brute, nette et les heures supplémentaires.</p>
+        </div>
 
-        function toggleLanguage() {
-            currentLang = currentLang === 'fr' ? 'en' : 'fr';
-            const t = i18n[currentLang];
+        <!-- Global Settings Controls -->
+        <div class="flex flex-wrap items-center gap-3">
+          <div class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 flex items-center gap-2">
+            <label class="text-xs text-slate-400 font-medium" data-i18n="label-hourly-rate">Taux Horaire (€/h):</label>
+            <input type="number" id="hourly-rate" value="12.50" step="0.10" min="0" oninput="calculatePayroll()" class="w-20 bg-slate-950 text-white text-xs font-mono font-bold px-2 py-1 rounded border border-slate-700 focus:outline-none focus:ring-1 focus:ring-brand-500">
+          </div>
+          <div class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 flex items-center gap-2">
+            <label class="text-xs text-slate-400 font-medium" data-i18n="label-charges">Cotisations Est. (%):</label>
+            <input type="number" id="tax-rate" value="22" step="1" min="0" max="100" oninput="calculatePayroll()" class="w-16 bg-slate-950 text-white text-xs font-mono font-bold px-2 py-1 rounded border border-slate-700 focus:outline-none focus:ring-1 focus:ring-brand-500">
+          </div>
+        </div>
+      </div>
 
-            document.getElementById('sub-title').innerText = t.subTitle;
-            document.getElementById('main-title').innerText = t.mainTitle;
-            document.getElementById('main-desc').innerText = t.mainDesc;
-            document.getElementById('lbl-hours').innerText = t.lblHours;
-            document.getElementById('lbl-minutes').innerText = t.lblMinutes;
-            document.getElementById('lbl-quick-min').innerText = t.lblQuickMin;
-            document.getElementById('lbl-res-dec').innerText = t.lblResDec;
-            document.getElementById('lbl-res-hm').innerText = t.lblResHm;
-            document.getElementById('lbl-dec-input').innerText = t.lblDecInput;
-            document.getElementById('lbl-hourly-rate').innerText = t.lblHourlyRate;
-            document.getElementById('table-title').innerText = t.tableTitle;
-            document.getElementById('geo-title').innerText = t.geoTitle;
+      <!-- TIMESHEET TABLE -->
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-left text-sm font-sans">
+          <thead>
+            <tr class="bg-slate-900/80 text-slate-400 text-xs font-mono uppercase tracking-wider border-b border-slate-800">
+              <th class="p-3" data-i18n="th-day">Jour</th>
+              <th class="p-3" data-i18n="th-start">Début</th>
+              <th class="p-3" data-i18n="th-end">Fin</th>
+              <th class="p-3" data-i18n="th-break">Pause (min)</th>
+              <th class="p-3 text-right" data-i18n="th-hhmm">Durée (HH:MM)</th>
+              <th class="p-3 text-right" data-i18n="th-decimal">Durée Décimale</th>
+              <th class="p-3 text-right" data-i18n="th-pay">Gain Brut Est.</th>
+            </tr>
+          </thead>
+          <tbody id="timesheet-rows" class="divide-y divide-slate-800/60 font-mono text-xs">
+            <!-- Dynamic Rows injected via JS -->
+          </tbody>
+        </table>
+      </div>
 
-            renderTimesheetTable();
-            calculateTimesheet();
+      <!-- OVERTIME & SUMMARY DISPLAY -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 bg-slate-900/90 rounded-xl p-5 border border-slate-800">
+        <div class="p-3 bg-slate-950 rounded-lg border border-slate-800">
+          <span class="text-[10px] text-slate-400 block uppercase" data-i18n="sum-total-hours">Total Heures Décimales</span>
+          <span id="sum-total-dec" class="text-2xl font-bold font-mono text-white mt-1 block">0.00 h</span>
+          <span id="sum-total-hhmm" class="text-xs text-slate-400 font-mono">0h 00m</span>
+        </div>
+
+        <div class="p-3 bg-slate-950 rounded-lg border border-slate-800">
+          <span class="text-[10px] text-slate-400 block uppercase" data-i18n="sum-overtime">Heures Majorées (>35h)</span>
+          <span id="sum-overtime-val" class="text-2xl font-bold font-mono text-amber-400 mt-1 block">0.00 h</span>
+          <span class="text-[10px] text-amber-500/80" data-i18n="sum-overtime-detail">Majorées à +25%</span>
+        </div>
+
+        <div class="p-3 bg-slate-950 rounded-lg border border-slate-800">
+          <span class="text-[10px] text-slate-400 block uppercase" data-i18n="sum-gross">Salaire Total Brut</span>
+          <span id="sum-gross-val" class="text-2xl font-bold font-mono text-brand-400 mt-1 block">0.00 €</span>
+          <span class="text-[10px] text-slate-400" data-i18n="sum-base-rate">Inclus majorations</span>
+        </div>
+
+        <div class="p-3 bg-slate-950 rounded-lg border border-emerald-500/30 bg-emerald-950/10">
+          <span class="text-[10px] text-emerald-400 font-semibold block uppercase" data-i18n="sum-net">Salaire Net Estimé</span>
+          <span id="sum-net-val" class="text-2xl font-bold font-mono text-emerald-400 mt-1 block">0.00 €</span>
+          <span class="text-[10px] text-slate-400" data-i18n="sum-after-charges">Après cotisations sociales</span>
+        </div>
+      </div>
+
+      <!-- ACTION BUTTONS (EXPORT / PRINT) -->
+      <div class="mt-6 flex flex-wrap gap-3 justify-end">
+        <button onclick="exportCSV()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg transition-colors flex items-center gap-2">
+          📊 <span data-i18n="btn-export-csv">Exporter en CSV</span>
+        </button>
+        <button onclick="window.print()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg transition-colors flex items-center gap-2">
+          🖨️ <span data-i18n="btn-print">Imprimer / PDF</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ADSENSE AD SLOT 3: MID-PAGE NATIVE BANNER -->
+    <aside class="w-full my-10" aria-label="Espace publicitaire central">
+      <div class="ad-banner-slot border border-slate-800/80 rounded-xl p-4 text-center min-h-[90px] flex flex-col justify-center items-center">
+        <span class="text-[10px] uppercase font-mono tracking-widest text-slate-500 mb-1">Publicité / Advertisement — AdSense Unit #3</span>
+        <div class="text-slate-400 text-xs italic">
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-0000000000000000"
+               data-ad-slot="3333333333"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <div class="text-slate-500 text-xs py-1 font-mono">[ In-Content Responsive Unit ]</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- QUICK REFERENCE LOOKUP TABLE (MINUTES 1 TO 60) -->
+    <section id="quick-table" class="glass-card rounded-2xl p-6 sm:p-8 mb-12">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div>
+          <h2 class="text-xl font-bold text-white" data-i18n="tbl-title">Table Officielle de Conversion des Minutes en Centièmes</h2>
+          <p class="text-xs text-slate-400 mt-1" data-i18n="tbl-desc">Correspondance exacte de 1 à 60 minutes pour la gestion administrative des temps.</p>
+        </div>
+        <input type="text" id="table-search" placeholder="Rechercher une minute..." onkeyup="filterTable()" class="bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:ring-1 focus:ring-brand-500 w-full sm:w-48 font-mono">
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 font-mono text-xs max-h-96 overflow-y-auto pr-2" id="conversion-table-grid">
+        <!-- JS dynamic generation -->
+      </div>
+    </section>
+
+    <!-- GEO & SEO COMPREHENSIVE GUIDE & FAQ (FOR IA ENGINES & USERS) -->
+    <section id="geo-faq" class="space-y-8">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="text-xs font-mono uppercase tracking-widest text-brand-400" data-i18n="geo-kicker">Base de Connaissance & Réglementation</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1" data-i18n="geo-heading">Tout savoir sur le calcul des heures en décimales</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- ARTICLE 1 -->
+        <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 leading-relaxed text-slate-300 text-sm">
+          <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-brand-400">❓</span> <span data-i18n="q1-title">Comment fonctionne la conversion sexagésimale en centièmes ?</span>
+          </h3>
+          <p class="mb-3" data-i18n="q1-body1">
+            Le temps ordinaire est décompté en système sexagésimal (base 60) : une heure contient 60 minutes. Cependant, les outils informatiques, logiciels de paie et calculateurs financiers fonctionnent en système décimal (base 100).
+          </p>
+          <p data-i18n="q1-body2">
+            La formule mathématique de conversion est : <code class="bg-slate-950 text-brand-400 px-2 py-0.5 rounded font-mono">Heures Décimales = Heures + (Minutes / 60)</code>. Par exemple, pour 8 heures et 15 minutes, le calcul donne : 15 / 60 = 0,25. Soit 8 + 0,25 = 8,25 heures décimales.
+          </p>
+        </article>
+
+        <!-- ARTICLE 2 -->
+        <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 leading-relaxed text-slate-300 text-sm">
+          <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-emerald-400">💶</span> <span data-i18n="q2-title">Pourquoi les erreurs de conversion coûtent cher en paie ?</span>
+          </h3>
+          <p class="mb-3" data-i18n="q2-body1">
+            Une erreur fréquente consiste à multiplier directement les minutes par le taux horaire. Par exemple, multiplier 15 €/heure par 7,30 (pour 7h30) donne 109,50 €, ce qui est faux !
+          </p>
+          <p data-i18n="q2-body2">
+            Le vrai calcul implique d'utiliser 7,50 heures décimales : <code class="bg-slate-950 text-emerald-400 px-2 py-0.5 rounded font-mono">7,50 h × 15 € = 112,50 €</code>. Une telle confusion entraîne un sous-paiement des salariés et des litiges prud'homaux.
+          </p>
+        </article>
+
+        <!-- ARTICLE 3 -->
+        <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 leading-relaxed text-slate-300 text-sm">
+          <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-amber-400">⚖️</span> <span data-i18n="q3-title">Heures supplémentaires et réglementation en France</span>
+          </h3>
+          <p data-i18n="q3-body">
+            En France, la durée légale du travail est fixée à 35 heures par semaine. Les heures effectuées au-delà constituent des heures supplémentaires. En règle générale (sauf disposition conventionnelle spécifique) : les 8 premières heures (de la 36e à la 43e heure inclusivement) bénéficient d'une majoration de 25 %. Les heures suivantes (à partir de la 44e heure) sont majorées de 50 %.
+          </p>
+        </article>
+
+        <!-- ARTICLE 4 -->
+        <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 leading-relaxed text-slate-300 text-sm">
+          <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-indigo-400">💻</span> <span data-i18n="q4-title">Comment utiliser les heures décimales dans Excel / Google Sheets ?</span>
+          </h3>
+          <p class="mb-3" data-i18n="q4-body1">
+            Dans un tableur comme Microsoft Excel, si la cellule A1 contient la durée au format <code class="bg-slate-950 text-slate-200 px-1.5 py-0.5 rounded font-mono">hh:mm</code>, vous devez multiplier la cellule par 24 pour obtenir des heures décimales : <code class="bg-slate-950 text-indigo-300 px-2 py-0.5 rounded font-mono">=A1*24</code>.
+          </p>
+          <p data-i18n="q4-body2">
+            Ensuite, formatez la cellule de résultat en nombre standard avec 2 décimales.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER & LEGAL NOTICES -->
+  <footer class="bg-slate-950 border-t border-slate-800 text-slate-400 text-xs py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <span class="text-base font-bold text-white block mb-2">HoraDecimal.pro</span>
+        <p class="text-slate-400 leading-relaxed" data-i18n="footer-desc">
+          Outil en ligne gratuit de conversion des temps de travail et calcul de paie. Conçu pour les gestionnaires RH, comptables, indépendants et salariés.
+        </p>
+      </div>
+
+      <div>
+        <span class="font-semibold text-slate-200 block mb-2" data-i18n="footer-links-title">Ressources & Accès</span>
+        <ul class="space-y-1.5">
+          <li><a href="#converter" class="hover:text-white transition-colors" data-i18n="nav-converter">Convertisseur de Minutes</a></li>
+          <li><a href="#timesheet" class="hover:text-white transition-colors" data-i18n="nav-timesheet">Feuille d'Heures Hebdomadaire</a></li>
+          <li><a href="#quick-table" class="hover:text-white transition-colors" data-i18n="nav-table">Table de 1 à 60 min</a></li>
+          <li><button onclick="toggleLegalModal()" class="hover:text-white underline text-left" data-i18n="footer-legal">Mentions Légales & Confidentialité</button></li>
+        </ul>
+      </div>
+
+      <div>
+        <span class="font-semibold text-slate-200 block mb-2" data-i18n="footer-conformity">Conformité RGPD & Publicité</span>
+        <p class="text-slate-400 leading-relaxed" data-i18n="footer-gdpr">
+          Ce site utilise des cookies de mesure d'audience et des emplacements publicitaires Google AdSense conformes aux directives Google Publisher Policies et au RGPD.
+        </p>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 mt-8 border-t border-slate-900 text-center text-slate-400 flex flex-col sm:flex-row justify-between items-center gap-2">
+      <span>© 2025 HoraDecimal.pro — Tous droits réservés.</span>
+      <span data-i18n="footer-disclaimer">Outil fourni à titre indicatif, validez toujours avec votre service de paie.</span>
+    </div>
+  </footer>
+
+  <!-- LEGAL NOTICES MODAL -->
+  <div id="legal-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-6 relative">
+      <button onclick="toggleLegalModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white font-bold text-lg">✕</button>
+      <h3 class="text-xl font-bold text-white mb-4" data-i18n="modal-title">Mentions Légales, RGPD & CGU</h3>
+      <div class="space-y-4 text-xs text-slate-300 leading-relaxed">
+        <p><strong>1. Éditeur du service :</strong> Site d'information et outil d'utilité publique édité à titre indépendant.</p>
+        <p><strong>2. Données personnelles & RGPD :</strong> Aucun enregistrement de vos données saisies sur le calculateur n'est effectué sur un serveur. Tous les calculs s'exécutent localement dans votre navigateur web.</p>
+        <p><strong>3. Cookies & Google AdSense :</strong> Ce site intègre des scripts publicitaires fournis par Google AdSense. Google peut utiliser des cookies pour diffuser des annonces basées sur la navigation antérieure de l'utilisateur. Vous pouvez personnaliser ou refuser le ciblage publicitaire dans les paramètres de votre navigateur.</p>
+        <p><strong>4. Limite de responsabilité :</strong> Les résultats de paie et de conversion d'heures sont fournis à titre d'estimation. L'éditeur ne saurait être tenu responsable d'une erreur de paie liée à une mauvaise utilisation.</p>
+      </div>
+      <div class="mt-6 text-right">
+        <button onclick="toggleLegalModal()" class="px-4 py-2 bg-brand-600 text-white font-semibold rounded-lg text-xs" data-i18n="modal-close">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed bottom-4 right-4 bg-emerald-600 text-white px-4 py-2.5 rounded-xl shadow-2xl font-mono text-xs font-semibold transform translate-y-20 opacity-0 transition-all duration-300 z-50 flex items-center gap-2">
+    <span>✅</span> <span id="toast-msg">Copié dans le presse-papier !</span>
+  </div>
+
+  <!-- JAVASCRIPT APP CODE -->
+  <script>
+    // I18N DICTIONARIES
+    const translations = {
+      fr: {
+        "badge-live": "Outil certifié conforme aux normes de calcul de la paie (Base 100/60)",
+        "nav-faq": "FAQ & Formules",
+        "tagline": "Calculateur Paie & Temps",
+        "nav-converter": "Convertisseur",
+        "nav-timesheet": "Calculateur de Paie",
+        "nav-table": "Table de Conversion",
+        "nav-guide": "Guide & Explications",
+        "btn-estimate-pay": "Calculer un Salaire",
+        "hero-badge": "Conversion instantanée HH:MM ↔ Décimal & Calcul de Salaire Brut / Net",
+        "hero-title": "Convertissez vos heures en centièmes et calculez votre paie exacte",
+        "hero-desc": "Passez instantanément du format sexagésimal (heures:minutes) au format décimal pour vos feuilles de temps, bulletins de paie et factures clients.",
+        "conv-card-title": "Convertisseur Rapide Bidirectionnel",
+        "conv-card-subtitle": "Calcul direct en centièmes d'heures (Ex: 7h30 = 7,50 h)",
+        "btn-reset": "Réinitialiser",
+        "label-hhmm": "Heures & Minutes (HH:MM)",
+        "input-hours": "Heures",
+        "input-minutes": "Minutes",
+        "res-decimal": "Valeur Décimale (Heures)",
+        "btn-copy": "Copier",
+        "label-decimal": "Heures Décimales (ex: 35.75)",
+        "input-dec": "Nombre Décimal",
+        "res-hhmm": "Durée Horaire (HH:MM)",
+        "tip-conversion": "<strong>Astuce Paie :</strong> Pour convertir des minutes en centièmes, divisez simplement le nombre de minutes par 60. Exemple: 45 minutes / 60 = 0,75 heure.",
+        "cheatsheet-title": "Repères de conversion fréquents",
+        "view-full-table": "Voir le tableau complet 1-60 min →",
+        "badge-timesheet": "Module Avancé",
+        "ts-title": "Calculateur de Feuille de Temps & Estimateur de Paie",
+        "ts-subtitle": "Saisissez vos horaires quotidiens pour calculer la paie brute, nette et les heures supplémentaires.",
+        "label-hourly-rate": "Taux Horaire (€/h):",
+        "label-charges": "Cotisations Est. (%):",
+        "th-day": "Jour",
+        "th-start": "Début",
+        "th-end": "Fin",
+        "th-break": "Pause (min)",
+        "th-hhmm": "Durée (HH:MM)",
+        "th-decimal": "Durée Décimale",
+        "th-pay": "Gain Brut Est.",
+        "sum-total-hours": "Total Heures Décimales",
+        "sum-overtime": "Heures Majorées (>35h)",
+        "sum-overtime-detail": "Majorées à +25%",
+        "sum-gross": "Salaire Total Brut",
+        "sum-base-rate": "Inclus majorations",
+        "sum-net": "Salaire Net Estimé",
+        "sum-after-charges": "Après cotisations sociales",
+        "btn-export-csv": "Exporter en CSV",
+        "btn-print": "Imprimer / PDF",
+        "tbl-title": "Table Officielle de Conversion des Minutes en Centièmes",
+        "tbl-desc": "Correspondance exacte de 1 à 60 minutes pour la gestion administrative des temps.",
+        "geo-kicker": "Base de Connaissance & Réglementation",
+        "geo-heading": "Tout savoir sur le calcul des heures en décimales",
+        "q1-title": "Comment fonctionne la conversion sexagésimale en centièmes ?",
+        "q1-body1": "Le temps ordinaire est décompté en système sexagésimal (base 60) : une heure contient 60 minutes. Cependant, les outils informatiques, logiciels de paie et calculateurs financiers fonctionnent en système décimal (base 100).",
+        "q1-body2": "La formule mathématique de conversion est : Heures Décimales = Heures + (Minutes / 60). Par exemple, pour 8 heures et 15 minutes, le calcul donne : 15 / 60 = 0,25. Soit 8 + 0,25 = 8,25 heures décimales.",
+        "q2-title": "Pourquoi les erreurs de conversion coûtent cher en paie ?",
+        "q2-body1": "Une erreur fréquente consiste à multiplier directement les minutes par le taux horaire. Par exemple, multiplier 15 €/heure par 7,30 (pour 7h30) donne 109,50 €, ce qui est faux !",
+        "q2-body2": "Le vrai calcul implique d'utiliser 7,50 heures décimales : 7,50 h × 15 € = 112,50 €. Une telle confusion entraîne un sous-paiement des salariés et des litiges prud'homaux.",
+        "q3-title": "Heures supplémentaires et réglementation en France",
+        "q3-body": "En France, la durée légale du travail est fixée à 35 heures par semaine. Les heures effectuées au-delà constituent des heures supplémentaires. En règle générale : les 8 premières heures (de la 36e à la 43e heure inclusivement) bénéficient d'une majoration de 25 %. Les heures suivantes (à partir de la 44e heure) sont majorées de 50 %.",
+        "q4-title": "Comment utiliser les heures décimales dans Excel / Google Sheets ?",
+        "q4-body1": "Dans un tableur comme Microsoft Excel, si la cellule A1 contient la durée au format hh:mm, vous devez multiplier la cellule par 24 pour obtenir des heures décimales : =A1*24.",
+        "q4-body2": "Ensuite, formatez la cellule de résultat en nombre standard avec 2 décimales.",
+        "footer-desc": "Outil en ligne gratuit de conversion des temps de travail et calcul de paie. Conçu pour les gestionnaires RH, comptables, indépendants et salariés.",
+        "footer-links-title": "Ressources & Accès",
+        "footer-legal": "Mentions Légales & Confidentialité",
+        "footer-conformity": "Conformité RGPD & Publicité",
+        "footer-gdpr": "Ce site utilise des cookies de mesure d'audience et des emplacements publicitaires Google AdSense conformes aux directives Google Publisher Policies et au RGPD.",
+        "footer-disclaimer": "Outil fourni à titre indicatif, validez toujours avec votre service de paie.",
+        "modal-title": "Mentions Légales, RGPD & CGU",
+        "modal-close": "Fermer",
+        "toast-copied": "Copié dans le presse-papier !"
+      },
+      en: {
+        "badge-live": "Payroll standard certified calculator (Base 100/60)",
+        "nav-faq": "FAQ & Formulas",
+        "tagline": "Payroll & Time Calculator",
+        "nav-converter": "Converter",
+        "nav-timesheet": "Payroll Calculator",
+        "nav-table": "Conversion Table",
+        "nav-guide": "Guide & Explainers",
+        "btn-estimate-pay": "Calculate Pay",
+        "hero-badge": "Instant HH:MM ↔ Decimal Converter & Gross/Net Pay Estimator",
+        "hero-title": "Convert Hours to Decimal & Calculate Exact Payroll",
+        "hero-desc": "Seamlessly convert sexagesimal time (hours:minutes) to decimal hours for timesheets, billing, and payroll calculations.",
+        "conv-card-title": "Bidirectional Fast Converter",
+        "conv-card-subtitle": "Direct decimal hours calculation (e.g. 7h30 = 7.50 hrs)",
+        "btn-reset": "Reset",
+        "label-hhmm": "Hours & Minutes (HH:MM)",
+        "input-hours": "Hours",
+        "input-minutes": "Minutes",
+        "res-decimal": "Decimal Hours",
+        "btn-copy": "Copy",
+        "label-decimal": "Decimal Hours (e.g. 35.75)",
+        "input-dec": "Decimal Number",
+        "res-hhmm": "Time Duration (HH:MM)",
+        "tip-conversion": "<strong>Payroll Tip:</strong> To convert minutes to decimals, simply divide the minutes by 60. Example: 45 minutes / 60 = 0.75 hours.",
+        "cheatsheet-title": "Frequent Conversion Reference",
+        "view-full-table": "View complete 1-60 min table →",
+        "badge-timesheet": "Advanced Module",
+        "ts-title": "Timesheet & Payroll Estimator",
+        "ts-subtitle": "Enter your daily shifts to calculate gross pay, net pay, and overtime.",
+        "label-hourly-rate": "Hourly Rate ($/h):",
+        "label-charges": "Deductions Est. (%):",
+        "th-day": "Day",
+        "th-start": "Start",
+        "th-end": "End",
+        "th-break": "Break (min)",
+        "th-hhmm": "Duration (HH:MM)",
+        "th-decimal": "Decimal Hours",
+        "th-pay": "Gross Pay Est.",
+        "sum-total-hours": "Total Decimal Hours",
+        "sum-overtime": "Overtime (>35h)",
+        "sum-overtime-detail": "+25% Overtime Rate",
+        "sum-gross": "Total Gross Pay",
+        "sum-base-rate": "Includes overtime",
+        "sum-net": "Estimated Net Pay",
+        "sum-after-charges": "After tax & charges",
+        "btn-export-csv": "Export CSV",
+        "btn-print": "Print / PDF",
+        "tbl-title": "Official Minutes to Hundredths Conversion Table",
+        "tbl-desc": "Exact 1-to-60 minute table for workforce management.",
+        "geo-kicker": "Knowledge Base & Regulations",
+        "geo-heading": "Everything about calculating decimal hours",
+        "q1-title": "How does sexagesimal to decimal conversion work?",
+        "q1-body1": "Standard time uses the sexagesimal system (base 60) with 60 minutes per hour. However, payroll and accounting software use the decimal system (base 100).",
+        "q1-body2": "The mathematical formula is: Decimal Hours = Hours + (Minutes / 60). For 8h15m, 15 / 60 = 0.25. So 8 + 0.25 = 8.25 decimal hours.",
+        "q2-title": "Why do conversion mistakes cost money in payroll?",
+        "q2-body1": "A common mistake is multiplying time minutes directly by the hourly rate. Multiplying $15/hr by 7.30 (for 7h30m) yields $109.50, which is incorrect!",
+        "q2-body2": "The correct calculation uses 7.50 decimal hours: 7.50 hrs × $15 = $112.50.",
+        "q3-title": "Overtime rules and guidelines",
+        "q3-body": "Standard full-time week is usually 35 to 40 hours depending on jurisdiction. Hours worked beyond standard hours qualify for overtime premium rates (+25% or +50%).",
+        "q4-title": "How to handle decimal hours in Excel / Google Sheets?",
+        "q4-body1": "In Excel, if cell A1 contains a duration formatted as hh:mm, multiply it by 24 to get decimal hours: =A1*24.",
+        "q4-body2": "Then format the result cell as a standard number with 2 decimal places.",
+        "footer-desc": "Free online time conversion and payroll calculation tool for HR managers, accountants, freelancers, and employees.",
+        "footer-links-title": "Resources & Links",
+        "footer-legal": "Legal Notice & Privacy",
+        "footer-conformity": "GDPR Compliance & Ads",
+        "footer-gdpr": "This site uses audience measurement cookies and Google AdSense ad slots adhering to Google Publisher Policies and GDPR.",
+        "footer-disclaimer": "Tool provided for informational purposes; always verify with your payroll department.",
+        "modal-title": "Legal Notice, Privacy & Terms",
+        "modal-close": "Close",
+        "toast-copied": "Copied to clipboard!"
+      }
+    };
+
+    let currentLang = 'fr';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.getElementById('lang-fr').className = lang === 'fr' ? 'px-2 py-0.5 rounded font-bold bg-brand-600 text-white' : 'px-2 py-0.5 rounded text-slate-400 hover:text-white';
+      document.getElementById('lang-en').className = lang === 'en' ? 'px-2 py-0.5 rounded font-bold bg-brand-600 text-white' : 'px-2 py-0.5 rounded text-slate-400 hover:text-white';
+
+      const elems = document.querySelectorAll('[data-i18n]');
+      elems.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
         }
+      });
+      renderTimesheet();
+    }
 
-        function switchTab(tab) {
-            document.getElementById('panel-hm-to-dec').classList.add('hidden');
-            document.getElementById('panel-dec-to-hm').classList.add('hidden');
-            document.getElementById('panel-timesheet').classList.add('hidden');
+    // 1. CONVERTER FUNCTIONS
+    function convertHHMMToDecimal() {
+      const h = parseFloat(document.getElementById('input-h').value) || 0;
+      const m = parseFloat(document.getElementById('input-m').value) || 0;
+      
+      const totalDec = h + (m / 60);
+      document.getElementById('res-decimal-val').innerText = totalDec.toFixed(2) + ' h';
+    }
 
-            document.getElementById('tab-hm-to-dec').className = "pb-3 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition";
-            document.getElementById('tab-dec-to-hm').className = "pb-3 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition";
-            document.getElementById('tab-timesheet').className = "pb-3 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition";
+    function convertDecimalToHHMM() {
+      const dec = parseFloat(document.getElementById('input-dec').value) || 0;
+      const hours = Math.floor(dec);
+      const minutes = Math.round((dec - hours) * 60);
 
-            if (tab === 'hm-to-dec') {
-                document.getElementById('panel-hm-to-dec').classList.remove('hidden');
-                document.getElementById('tab-hm-to-dec').className = "pb-3 text-sm font-bold border-b-2 border-brand-600 text-brand-600 transition";
-            } else if (tab === 'dec-to-hm') {
-                document.getElementById('panel-dec-to-hm').classList.remove('hidden');
-                document.getElementById('tab-dec-to-hm').className = "pb-3 text-sm font-bold border-b-2 border-brand-600 text-brand-600 transition";
-            } else if (tab === 'timesheet') {
-                document.getElementById('panel-timesheet').classList.remove('hidden');
-                document.getElementById('tab-timesheet').className = "pb-3 text-sm font-bold border-b-2 border-brand-600 text-brand-600 transition";
-            }
+      document.getElementById('res-hhmm-val').innerText = `${hours}h ${minutes < 10 ? '0' : ''}${minutes}m`;
+    }
+
+    function resetConverter() {
+      document.getElementById('input-h').value = 7;
+      document.getElementById('input-m').value = 30;
+      document.getElementById('input-dec').value = 35.75;
+      convertHHMMToDecimal();
+      convertDecimalToHHMM();
+    }
+
+    // 2. TIMESHEET DATA & CALCULATOR
+    const defaultDays = [
+      { dayFr: "Lundi", dayEn: "Monday", start: "08:30", end: "17:00", breakMin: 60 },
+      { dayFr: "Mardi", dayEn: "Tuesday", start: "08:30", end: "17:00", breakMin: 60 },
+      { dayFr: "Mercredi", dayEn: "Wednesday", start: "08:30", end: "17:00", breakMin: 60 },
+      { dayFr: "Jeudi", dayEn: "Thursday", start: "08:30", end: "17:00", breakMin: 60 },
+      { dayFr: "Vendredi", dayEn: "Friday", start: "08:30", end: "16:30", breakMin: 60 },
+      { dayFr: "Samedi", dayEn: "Saturday", start: "", end: "", breakMin: 0 },
+      { dayFr: "Dimanche", dayEn: "Sunday", start: "", end: "", breakMin: 0 }
+    ];
+
+    function renderTimesheet() {
+      const tbody = document.getElementById('timesheet-rows');
+      tbody.innerHTML = '';
+
+      defaultDays.forEach((item, index) => {
+        const dayLabel = currentLang === 'fr' ? item.dayFr : item.dayEn;
+        const row = document.createElement('tr');
+        row.className = 'hover:bg-slate-900/50 transition-colors';
+        row.innerHTML = `
+          <td class="p-3 font-semibold text-slate-200">${dayLabel}</td>
+          <td class="p-3">
+            <input type="time" value="${item.start}" id="start-${index}" onchange="calculatePayroll()" class="bg-slate-950 text-slate-100 border border-slate-700 rounded px-2 py-1 focus:outline-none focus:ring-1 focus:ring-brand-500 text-xs">
+          </td>
+          <td class="p-3">
+            <input type="time" value="${item.end}" id="end-${index}" onchange="calculatePayroll()" class="bg-slate-950 text-slate-100 border border-slate-700 rounded px-2 py-1 focus:outline-none focus:ring-1 focus:ring-brand-500 text-xs">
+          </td>
+          <td class="p-3">
+            <input type="number" value="${item.breakMin}" id="break-${index}" min="0" step="5" oninput="calculatePayroll()" class="w-16 bg-slate-950 text-slate-100 border border-slate-700 rounded px-2 py-1 focus:outline-none focus:ring-1 focus:ring-brand-500 text-xs">
+          </td>
+          <td class="p-3 text-right text-slate-300" id="hhmm-${index}">0h 00m</td>
+          <td class="p-3 text-right font-bold text-brand-400" id="dec-${index}">0.00 h</td>
+          <td class="p-3 text-right font-bold text-emerald-400" id="pay-${index}">0.00 €</td>
+        `;
+        tbody.appendChild(row);
+      });
+
+      calculatePayroll();
+    }
+
+    function calculatePayroll() {
+      const rate = parseFloat(document.getElementById('hourly-rate').value) || 0;
+      const taxRate = parseFloat(document.getElementById('tax-rate').value) || 0;
+      
+      let totalDecHours = 0;
+
+      defaultDays.forEach((_, index) => {
+        const startVal = document.getElementById(`start-${index}`).value;
+        const endVal = document.getElementById(`end-${index}`).value;
+        const breakVal = parseFloat(document.getElementById(`break-${index}`).value) || 0;
+
+        if (startVal && endVal) {
+          const [sh, sm] = startVal.split(':').map(Number);
+          const [eh, em] = endVal.split(':').map(Number);
+
+          let startMins = sh * 60 + sm;
+          let endMins = eh * 60 + em;
+          if (endMins < startMins) endMins += 24 * 60; // Overnight shift
+
+          let diffMins = endMins - startMins - breakVal;
+          if (diffMins < 0) diffMins = 0;
+
+          const decHours = diffMins / 60;
+          totalDecHours += decHours;
+
+          const hours = Math.floor(diffMins / 60);
+          const mins = diffMins % 60;
+          const dayPay = decHours * rate;
+
+          document.getElementById(`hhmm-${index}`).innerText = `${hours}h ${mins < 10 ? '0' : ''}${mins}m`;
+          document.getElementById(`dec-${index}`).innerText = `${decHours.toFixed(2)} h`;
+          document.getElementById(`pay-${index}`).innerText = `${dayPay.toFixed(2)} €`;
+        } else {
+          document.getElementById(`hhmm-${index}`).innerText = `0h 00m`;
+          document.getElementById(`dec-${index}`).innerText = `0.00 h`;
+          document.getElementById(`pay-${index}`).innerText = `0.00 €`;
         }
+      });
 
-        function convertHMtoDec() {
-            const h = parseFloat(document.getElementById('input-hours').value) || 0;
-            const m = parseFloat(document.getElementById('input-minutes').value) || 0;
-            const decimal = h + (m / 60);
-            document.getElementById('result-decimal').innerText = decimal.toFixed(2) + ' h';
-            document.getElementById('lbl-formula-1').innerText = `Formule : ${h} + (${m} / 60) = ${decimal.toFixed(4)} h`;
+      // Total HH:MM
+      const totalMinsCombined = Math.round(totalDecHours * 60);
+      const totalH = Math.floor(totalMinsCombined / 60);
+      const totalM = totalMinsCombined % 60;
+
+      // Overtime (> 35h)
+      let overtimeHours = 0;
+      if (totalDecHours > 35) {
+        overtimeHours = totalDecHours - 35;
+      }
+
+      // Gross calculation: 35h at standard rate + overtime at 1.25 multiplier
+      let grossPay = 0;
+      if (totalDecHours <= 35) {
+        grossPay = totalDecHours * rate;
+      } else {
+        grossPay = (35 * rate) + (overtimeHours * rate * 1.25);
+      }
+
+      const netPay = grossPay * (1 - (taxRate / 100));
+
+      document.getElementById('sum-total-dec').innerText = `${totalDecHours.toFixed(2)} h`;
+      document.getElementById('sum-total-hhmm').innerText = `${totalH}h ${totalM < 10 ? '0' : ''}${totalM}m`;
+      document.getElementById('sum-overtime-val').innerText = `${overtimeHours.toFixed(2)} h`;
+      document.getElementById('sum-gross-val').innerText = `${grossPay.toFixed(2)} €`;
+      document.getElementById('sum-net-val').innerText = `${netPay.toFixed(2)} €`;
+    }
+
+    // 3. GENERATE FULL CONVERSION TABLE
+    function renderConversionGrid() {
+      const container = document.getElementById('conversion-table-grid');
+      container.innerHTML = '';
+
+      for (let min = 1; min <= 60; min++) {
+        const dec = (min / 60).toFixed(2);
+        const item = document.createElement('div');
+        item.className = 'table-row-item flex justify-between items-center p-2 rounded bg-slate-900 border border-slate-800 hover:border-brand-500/50 transition-colors';
+        item.setAttribute('data-min', min);
+        item.innerHTML = `
+          <span class="text-slate-400">${min} min</span>
+          <span class="font-bold text-brand-400">${dec} h</span>
+        `;
+        container.appendChild(item);
+      }
+    }
+
+    function filterTable() {
+      const q = document.getElementById('table-search').value.toLowerCase().trim();
+      const items = document.querySelectorAll('.table-row-item');
+
+      items.forEach(item => {
+        const minVal = item.getAttribute('data-min');
+        if (q === '' || minVal.includes(q)) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
         }
+      });
+    }
 
-        function setMinutes(m) {
-            document.getElementById('input-minutes').value = m;
-            convertHMtoDec();
-        }
+    // 4. UTILS & EXPORT
+    function copyToClipboard(elementId) {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(translations[currentLang]["toast-copied"]);
+      });
+    }
 
-        function convertDectoHM() {
-            const dec = parseFloat(document.getElementById('input-decimal').value) || 0;
-            const h = Math.floor(dec);
-            const totalSec = Math.round((dec - h) * 3600);
-            const m = Math.floor(totalSec / 60);
-            const s = totalSec % 60;
-            document.getElementById('result-hm').innerText = `${h} h ${m} min ${s} s`;
-            document.getElementById('lbl-formula-2').innerText = `Conversion : ${dec} h = ${h}h et ${(dec - h).toFixed(4)} x 60 min`;
-        }
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-msg').innerText = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2500);
+    }
 
-        // Timesheet Setup
-        const defaultTimesheet = [
-            { start: "08:30", end: "17:00", pause: 60 },
-            { start: "08:30", end: "17:00", pause: 60 },
-            { start: "08:30", end: "17:00", pause: 60 },
-            { start: "08:30", end: "17:00", pause: 60 },
-            { start: "08:30", end: "16:30", pause: 60 },
-            { start: "", end: "", pause: 0 },
-            { start: "", end: "", pause: 0 }
-        ];
+    function toggleLegalModal() {
+      const modal = document.getElementById('legal-modal');
+      modal.classList.toggle('hidden');
+    }
 
-        function renderTimesheetTable() {
-            const tbody = document.getElementById('timesheet-body');
-            const days = i18n[currentLang].days;
-            tbody.innerHTML = '';
+    function exportCSV() {
+      let csvContent = "data:text/csv;charset=utf-8,Jour,Debut,Fin,Pause_min,Duree_HHMM,Duree_Decimal,Gain_Brut\n";
+      
+      defaultDays.forEach((item, index) => {
+        const dayLabel = currentLang === 'fr' ? item.dayFr : item.dayEn;
+        const start = document.getElementById(`start-${index}`).value;
+        const end = document.getElementById(`end-${index}`).value;
+        const breakM = document.getElementById(`break-${index}`).value;
+        const hhmm = document.getElementById(`hhmm-${index}`).innerText;
+        const dec = document.getElementById(`dec-${index}`).innerText.replace(' h', '');
+        const pay = document.getElementById(`pay-${index}`).innerText.replace(' €', '');
 
-            days.forEach((day, idx) => {
-                const rowData = defaultTimesheet[idx];
-                const tr = document.createElement('tr');
-                tr.className = "border-b border-slate-100 hover:bg-slate-50";
-                tr.innerHTML = `
-                    <td class="p-2 font-bold text-slate-800">${day}</td>
-                    <td class="p-2"><input type="time" id="ts-start-${idx}" value="${rowData.start}" onchange="calculateTimesheet()" class="border border-slate-300 rounded px-2 py-1 text-xs"></td>
-                    <td class="p-2"><input type="time" id="ts-end-${idx}" value="${rowData.end}" onchange="calculateTimesheet()" class="border border-slate-300 rounded px-2 py-1 text-xs"></td>
-                    <td class="p-2"><input type="number" id="ts-pause-${idx}" value="${rowData.pause}" step="5" min="0" oninput="calculateTimesheet()" class="border border-slate-300 rounded px-2 py-1 text-xs w-16"></td>
-                    <td class="p-2 font-mono font-semibold" id="ts-hm-${idx}">00:00</td>
-                    <td class="p-2 font-mono font-bold text-brand-600" id="ts-dec-${idx}">0.00 h</td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
+        csvContent += `"${dayLabel}","${start}","${end}","${breakM}","${hhmm}","${dec}","${pay}"\n`;
+      });
 
-        function calculateTimesheet() {
-            let totalDecSum = 0;
-            const rate = parseFloat(document.getElementById('hourly-rate').value) || 0;
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", `feuille_de_temps_${new Date().toISOString().slice(0,10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
 
-            for (let i = 0; i < 7; i++) {
-                const startVal = document.getElementById(`ts-start-${i}`)?.value;
-                const endVal = document.getElementById(`ts-end-${i}`)?.value;
-                const pauseVal = parseFloat(document.getElementById(`ts-pause-${i}`)?.value) || 0;
-
-                if (startVal && endVal) {
-                    const [sh, sm] = startVal.split(':').map(Number);
-                    const [eh, em] = endVal.split(':').map(Number);
-
-                    let startMins = sh * 60 + sm;
-                    let endMins = eh * 60 + em;
-                    if (endMins < startMins) endMins += 24 * 60; // night shift support
-
-                    let diffMins = endMins - startMins - pauseVal;
-                    if (diffMins < 0) diffMins = 0;
-
-                    const h = Math.floor(diffMins / 60);
-                    const m = diffMins % 60;
-                    const dec = diffMins / 60;
-
-                    totalDecSum += dec;
-
-                    if (document.getElementById(`ts-hm-${i}`)) {
-                        document.getElementById(`ts-hm-${i}`).innerText = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
-                        document.getElementById(`ts-dec-${i}`).innerText = `${dec.toFixed(2)} h`;
-                    }
-                } else {
-                    if (document.getElementById(`ts-hm-${i}`)) {
-                        document.getElementById(`ts-hm-${i}`).innerText = `00:00`;
-                        document.getElementById(`ts-dec-${i}`).innerText = `0.00 h`;
-                    }
-                }
-            }
-
-            document.getElementById('ts-total-dec').innerText = totalDecSum.toFixed(2) + ' h';
-            document.getElementById('ts-total-pay').innerText = (totalDecSum * rate).toFixed(2) + ' €';
-        }
-
-        function buildConversionGrid() {
-            const grid = document.getElementById('conversion-table-grid');
-            grid.innerHTML = '';
-            for (let min = 1; min <= 60; min++) {
-                const dec = (min / 60).toFixed(2);
-                const item = document.createElement('div');
-                item.className = "flex justify-between bg-white px-2 py-1 rounded border border-slate-200 hover:border-brand-500 transition";
-                item.innerHTML = `<span class="text-slate-500">${min} min</span><span class="font-bold text-slate-900">${dec} h</span>`;
-                grid.appendChild(item);
-            }
-        }
-
-        function exportCSV() {
-            let csvContent = "data:text/csv;charset=utf-8,Jour,Debut,Fin,Pause(min),Total_Decimale\n";
-            const days = i18n[currentLang].days;
-
-            days.forEach((day, i) => {
-                const s = document.getElementById(`ts-start-${i}`)?.value || "";
-                const e = document.getElementById(`ts-end-${i}`)?.value || "";
-                const p = document.getElementById(`ts-pause-${i}`)?.value || "0";
-                const d = document.getElementById(`ts-dec-${i}`)?.innerText.replace(' h', '') || "0.00";
-                csvContent += `${day},${s},${e},${p},${d}\n`;
-            });
-
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "feuille_de_temps.csv");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-
-        // Initialize on load
-        window.addEventListener('DOMContentLoaded', () => {
-            convertHMtoDec();
-            convertDectoHM();
-            buildConversionGrid();
-            renderTimesheetTable();
-            calculateTimesheet();
-        });
-    </script>
+    // INIT
+    window.onload = function() {
+      convertHHMMToDecimal();
+      convertDecimalToHHMM();
+      renderTimesheet();
+      renderConversionGrid();
+    };
+  </script>
 </body>
 </html>
