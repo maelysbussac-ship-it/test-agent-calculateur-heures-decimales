@@ -18,7 +18,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -29,20 +29,23 @@
         extend: {
           fontFamily: {
             sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Fraunces', 'Georgia', 'serif'],
             mono: ['JetBrains Mono', 'monospace'],
           },
           colors: {
             brand: {
-              50: '#eep2ff',
-              100: '#e0e7ff',
-              500: '#6366f1',
-              600: '#4f46e5',
-              700: '#4338ca',
-              900: '#312e81',
+              50: '#fdf6ec',
+              100: '#f8e8d0',
+              300: '#e3b273',
+              400: '#cc8a41',
+              500: '#b06e2c',
+              600: '#95571f',
+              700: '#7a4419',
+              900: '#4a2a10',
             },
             accent: {
-              500: '#10b981',
-              600: '#059669',
+              500: '#2f6e5c',
+              600: '#255a4a',
             }
           }
         }
@@ -154,49 +157,49 @@
     }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
+<body class="bg-stone-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-500 selection:text-slate-900">
 
   <!-- TOP ANNOUNCEMENT / ADSENSE POLICY NOTICE -->
-  <div class="bg-slate-900 border-b border-slate-800 text-xs py-1.5 px-4 text-slate-400 flex justify-between items-center">
+  <div class="bg-white border-b border-stone-200 text-xs py-1.5 px-4 text-slate-400 flex justify-between items-center">
     <div class="flex items-center gap-2">
       <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
       <span data-i18n="badge-live">Outil certifié conforme aux normes de calcul de la paie (Base 100/60)</span>
     </div>
     <div class="flex items-center gap-4">
-      <a href="#geo-faq" class="hover:text-brand-400 transition-colors" data-i18n="nav-faq">FAQ & Formules</a>
+      <a href="#geo-faq" class="hover:text-brand-600 transition-colors" data-i18n="nav-faq">FAQ & Formules</a>
       <span class="text-slate-700">|</span>
       <!-- Lang Switcher -->
       <div class="flex items-center space-x-1 font-mono text-xs">
-        <button id="lang-fr" onclick="setLanguage('fr')" class="px-2 py-0.5 rounded font-bold bg-brand-600 text-white">FR</button>
-        <button id="lang-en" onclick="setLanguage('en')" class="px-2 py-0.5 rounded text-slate-400 hover:text-white">EN</button>
+        <button id="lang-fr" onclick="setLanguage('fr')" class="px-2 py-0.5 rounded font-bold bg-brand-600 text-slate-900">FR</button>
+        <button id="lang-en" onclick="setLanguage('en')" class="px-2 py-0.5 rounded text-slate-400 hover:text-slate-900">EN</button>
       </div>
     </div>
   </div>
 
   <!-- HEADER NAVBAR -->
-  <header class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+  <header class="sticky top-0 z-40 bg-white/80  border-b border-stone-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-400 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brand-500/20">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-400 flex items-center justify-center text-slate-900 font-bold text-xl shadow-lg shadow-brand-300/20">
           ⏱️
         </div>
         <div>
-          <span class="text-lg font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-brand-300">
-            HoraDecimal<span class="text-brand-500">.pro</span>
+          <span class="text-lg font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-stone-50 via-stone-50 to-brand-400">
+            HoraDecimal<span class="text-brand-600">.pro</span>
           </span>
           <span class="block text-[10px] uppercase tracking-widest text-slate-400 font-semibold" data-i18n="tagline">Calculateur Paie & Temps</span>
         </div>
       </div>
 
-      <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-300">
-        <a href="#converter" class="hover:text-brand-400 transition-colors" data-i18n="nav-converter">Convertisseur</a>
-        <a href="#timesheet" class="hover:text-brand-400 transition-colors" data-i18n="nav-timesheet">Calculateur de Paie</a>
-        <a href="#quick-table" class="hover:text-brand-400 transition-colors" data-i18n="nav-table">Table de Conversion</a>
-        <a href="#geo-faq" class="hover:text-brand-400 transition-colors" data-i18n="nav-guide">Guide & Explications</a>
+      <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-600">
+        <a href="#converter" class="hover:text-brand-600 transition-colors" data-i18n="nav-converter">Convertisseur</a>
+        <a href="#timesheet" class="hover:text-brand-600 transition-colors" data-i18n="nav-timesheet">Calculateur de Paie</a>
+        <a href="#quick-table" class="hover:text-brand-600 transition-colors" data-i18n="nav-table">Table de Conversion</a>
+        <a href="#geo-faq" class="hover:text-brand-600 transition-colors" data-i18n="nav-guide">Guide & Explications</a>
       </nav>
 
       <div class="flex items-center space-x-3">
-        <a href="#timesheet" class="bg-brand-600 hover:bg-brand-500 text-white font-semibold text-xs sm:text-sm px-4 py-2 rounded-lg shadow-md transition-all hover:scale-[1.02] flex items-center gap-2">
+        <a href="#timesheet" class="bg-brand-600 hover:bg-brand-500 text-slate-900 font-semibold text-xs sm:text-sm px-4 py-2 rounded-lg shadow-md transition-all hover:scale-[1.02] flex items-center gap-2">
           <span>💼</span> <span data-i18n="btn-estimate-pay">Calculer un Salaire</span>
         </a>
       </div>
@@ -205,7 +208,7 @@
 
   <!-- ADSENSE AD SLOT 1: TOP LEADERBOARD (Compliant placement) -->
   <aside class="max-w-7xl mx-auto w-full px-4 pt-4 pb-2" aria-label="Espace publicitaire supérieur">
-    <div class="ad-banner-slot border border-slate-800/80 rounded-xl p-3 text-center min-h-[90px] flex flex-col justify-center items-center relative overflow-hidden group">
+    <div class="ad-banner-slot border border-stone-200/80 rounded-xl p-3 text-center min-h-[90px] flex flex-col justify-center items-center relative overflow-hidden group">
       <span class="text-[10px] uppercase font-mono tracking-widest text-slate-500 mb-1">Publicité / Advertisement — AdSense Unit #1</span>
       <!-- AdSense Script Holder -->
       <div class="text-slate-400 text-xs italic">
@@ -222,12 +225,12 @@
 
   <!-- HERO SECTION -->
   <section class="relative pt-6 pb-12 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-brand-900/10 via-slate-950 to-slate-950 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-brand-100/40 via-stone-100 to-stone-50 pointer-events-none"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-400 border border-brand-500/20 mb-4">
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-600 border border-brand-500/20 mb-4">
         ⚡ <span data-i18n="hero-badge">Conversion instantanée HH:MM ↔ Décimal & Calcul de Salaire Brut / Net</span>
       </span>
-      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight max-w-4xl mx-auto" data-i18n="hero-title">
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight max-w-4xl mx-auto" data-i18n="hero-title">
         Convertissez vos heures en centièmes et calculez votre paie exacte
       </h1>
       <p class="mt-4 text-base sm:text-lg text-slate-400 max-w-2xl mx-auto" data-i18n="hero-desc">
@@ -247,42 +250,42 @@
         
         <!-- CARD 1: BIDIRECTIONAL FAST CONVERTER -->
         <div class="glass-card rounded-2xl p-6 sm:p-8 glow-indigo relative overflow-hidden">
-          <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
+          <div class="flex items-center justify-between border-b border-stone-200 pb-4 mb-6">
             <div class="flex items-center gap-3">
-              <span class="p-2 bg-brand-500/20 rounded-lg text-brand-400 font-bold text-xl">🔄</span>
+              <span class="p-2 bg-brand-500/20 rounded-lg text-brand-600 font-bold text-xl">🔄</span>
               <div>
-                <h2 class="text-xl font-bold text-white" data-i18n="conv-card-title">Convertisseur Rapide Bidirectionnel</h2>
+                <h2 class="text-xl font-bold text-slate-900" data-i18n="conv-card-title">Convertisseur Rapide Bidirectionnel</h2>
                 <p class="text-xs text-slate-400" data-i18n="conv-card-subtitle">Calcul direct en centièmes d'heures (Ex: 7h30 = 7,50 h)</p>
               </div>
             </div>
-            <button onclick="resetConverter()" class="text-xs text-slate-400 hover:text-white underline font-mono" data-i18n="btn-reset">Réinitialiser</button>
+            <button onclick="resetConverter()" class="text-xs text-slate-400 hover:text-slate-900 underline font-mono" data-i18n="btn-reset">Réinitialiser</button>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             
             <!-- MODE A: HH:MM -> DECIMAL -->
-            <div class="bg-slate-900/90 rounded-xl p-5 border border-slate-800">
+            <div class="bg-white/90 rounded-xl p-5 border border-stone-200">
               <div class="flex justify-between items-center mb-3">
-                <label class="text-sm font-semibold text-slate-200" data-i18n="label-hhmm">Heures & Minutes (HH:MM)</label>
-                <span class="text-[10px] font-mono bg-brand-500/20 text-brand-300 px-2 py-0.5 rounded">Standard</span>
+                <label class="text-sm font-semibold text-slate-700" data-i18n="label-hhmm">Heures & Minutes (HH:MM)</label>
+                <span class="text-[10px] font-mono bg-brand-500/20 text-brand-700 px-2 py-0.5 rounded">Standard</span>
               </div>
               <div class="grid grid-cols-2 gap-2 mb-4">
                 <div>
                   <span class="text-[10px] text-slate-400 block mb-1" data-i18n="input-hours">Heures</span>
-                  <input type="number" id="input-h" min="0" value="7" placeholder="0" oninput="convertHHMMToDecimal()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2.5 text-white font-mono font-bold text-lg focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                  <input type="number" id="input-h" min="0" value="7" placeholder="0" oninput="convertHHMMToDecimal()" class="w-full bg-stone-50 border border-stone-300 rounded-lg px-3 py-2.5 text-slate-900 font-mono font-bold text-lg focus:ring-2 focus:ring-brand-500 focus:outline-none">
                 </div>
                 <div>
                   <span class="text-[10px] text-slate-400 block mb-1" data-i18n="input-minutes">Minutes</span>
-                  <input type="number" id="input-m" min="0" max="59" value="30" placeholder="0" oninput="convertHHMMToDecimal()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2.5 text-white font-mono font-bold text-lg focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                  <input type="number" id="input-m" min="0" max="59" value="30" placeholder="0" oninput="convertHHMMToDecimal()" class="w-full bg-stone-50 border border-stone-300 rounded-lg px-3 py-2.5 text-slate-900 font-mono font-bold text-lg focus:ring-2 focus:ring-brand-500 focus:outline-none">
                 </div>
               </div>
 
               <!-- RESULT DISPLAY -->
-              <div class="bg-slate-950 rounded-lg p-4 border border-brand-500/30 text-center relative group">
+              <div class="bg-stone-50 rounded-lg p-4 border border-brand-500/30 text-center relative group">
                 <span class="text-[10px] uppercase font-mono text-slate-400 block" data-i18n="res-decimal">Valeur Décimale (Heures)</span>
-                <span id="res-decimal-val" class="text-3xl font-extrabold text-brand-400 font-mono tracking-tight my-1 block">7.50 h</span>
+                <span id="res-decimal-val" class="text-3xl font-extrabold text-brand-600 font-mono tracking-tight my-1 block">7.50 h</span>
                 <div class="flex justify-center gap-2 mt-2">
-                  <button onclick="copyToClipboard('res-decimal-val')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1 rounded transition-colors font-mono flex items-center gap-1">
+                  <button onclick="copyToClipboard('res-decimal-val')" class="text-xs bg-stone-100 hover:bg-stone-200 text-slate-700 px-3 py-1 rounded transition-colors font-mono flex items-center gap-1">
                     <span>📋</span> <span data-i18n="btn-copy">Copier</span>
                   </button>
                 </div>
@@ -290,22 +293,22 @@
             </div>
 
             <!-- MODE B: DECIMAL -> HH:MM -->
-            <div class="bg-slate-900/90 rounded-xl p-5 border border-slate-800">
+            <div class="bg-white/90 rounded-xl p-5 border border-stone-200">
               <div class="flex justify-between items-center mb-3">
-                <label class="text-sm font-semibold text-slate-200" data-i18n="label-decimal">Heures Décimales (ex: 35.75)</label>
+                <label class="text-sm font-semibold text-slate-700" data-i18n="label-decimal">Heures Décimales (ex: 35.75)</label>
                 <span class="text-[10px] font-mono bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded">Paie / Excel</span>
               </div>
               <div class="mb-4">
                 <span class="text-[10px] text-slate-400 block mb-1" data-i18n="input-dec">Nombre Décimal</span>
-                <input type="number" id="input-dec" step="0.01" value="35.75" placeholder="0.00" oninput="convertDecimalToHHMM()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2.5 text-white font-mono font-bold text-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                <input type="number" id="input-dec" step="0.01" value="35.75" placeholder="0.00" oninput="convertDecimalToHHMM()" class="w-full bg-stone-50 border border-stone-300 rounded-lg px-3 py-2.5 text-slate-900 font-mono font-bold text-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none">
               </div>
 
               <!-- RESULT DISPLAY -->
-              <div class="bg-slate-950 rounded-lg p-4 border border-emerald-500/30 text-center">
+              <div class="bg-stone-50 rounded-lg p-4 border border-emerald-500/30 text-center">
                 <span class="text-[10px] uppercase font-mono text-slate-400 block" data-i18n="res-hhmm">Durée Horaire (HH:MM)</span>
                 <span id="res-hhmm-val" class="text-3xl font-extrabold text-emerald-400 font-mono tracking-tight my-1 block">35h 45m</span>
                 <div class="flex justify-center gap-2 mt-2">
-                  <button onclick="copyToClipboard('res-hhmm-val')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1 rounded transition-colors font-mono flex items-center gap-1">
+                  <button onclick="copyToClipboard('res-hhmm-val')" class="text-xs bg-stone-100 hover:bg-stone-200 text-slate-700 px-3 py-1 rounded transition-colors font-mono flex items-center gap-1">
                     <span>📋</span> <span data-i18n="btn-copy">Copier</span>
                   </button>
                 </div>
@@ -315,7 +318,7 @@
           </div>
 
           <!-- Quick Tip -->
-          <div class="mt-6 p-3 bg-slate-900/60 rounded-xl text-xs text-slate-400 border border-slate-800/80 flex items-start gap-2">
+          <div class="mt-6 p-3 bg-white/60 rounded-xl text-xs text-slate-400 border border-stone-200/80 flex items-start gap-2">
             <span class="text-amber-400">💡</span>
             <p data-i18n="tip-conversion"><strong>Astuce Paie :</strong> Pour convertir des minutes en centièmes, divisez simplement le nombre de minutes par 60. Exemple: 45 minutes / 60 = 0,75 heure.</p>
           </div>
@@ -327,7 +330,7 @@
       <div class="lg:col-span-4 space-y-6">
         
         <!-- AD UNIT 2: MEDIUM RECTANGLE 300x250 / 336x280 -->
-        <aside class="ad-banner-slot border border-slate-800 rounded-2xl p-4 text-center min-h-[280px] flex flex-col justify-center items-center" aria-label="Publicité">
+        <aside class="ad-banner-slot border border-stone-200 rounded-2xl p-4 text-center min-h-[280px] flex flex-col justify-center items-center" aria-label="Publicité">
           <span class="text-[10px] uppercase font-mono tracking-widest text-slate-500 mb-2">Publicité / Advertisement — AdSense Unit #2</span>
           <div class="text-slate-400 text-xs italic">
             <ins class="adsbygoogle"
@@ -339,54 +342,54 @@
         </aside>
 
         <!-- CHEAT SHEET QUICK BOX -->
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
-          <h3 class="font-bold text-white text-sm mb-3 flex items-center gap-2">
+        <div class="bg-white border border-stone-200 rounded-2xl p-5">
+          <h3 class="font-bold text-slate-900 text-sm mb-3 flex items-center gap-2">
             <span>⚡</span> <span data-i18n="cheatsheet-title">Repères de conversion fréquents</span>
           </h3>
           <div class="space-y-2 text-xs font-mono">
-            <div class="flex justify-between p-2 rounded bg-slate-950/60 border border-slate-800/50">
-              <span class="text-slate-300">15 min</span>
-              <span class="text-brand-400 font-bold">0,25 h</span>
+            <div class="flex justify-between p-2 rounded bg-white/60 border border-stone-200/50">
+              <span class="text-slate-600">15 min</span>
+              <span class="text-brand-600 font-bold">0,25 h</span>
             </div>
-            <div class="flex justify-between p-2 rounded bg-slate-950/60 border border-slate-800/50">
-              <span class="text-slate-300">30 min</span>
-              <span class="text-brand-400 font-bold">0,50 h</span>
+            <div class="flex justify-between p-2 rounded bg-white/60 border border-stone-200/50">
+              <span class="text-slate-600">30 min</span>
+              <span class="text-brand-600 font-bold">0,50 h</span>
             </div>
-            <div class="flex justify-between p-2 rounded bg-slate-950/60 border border-slate-800/50">
-              <span class="text-slate-300">45 min</span>
-              <span class="text-brand-400 font-bold">0,75 h</span>
+            <div class="flex justify-between p-2 rounded bg-white/60 border border-stone-200/50">
+              <span class="text-slate-600">45 min</span>
+              <span class="text-brand-600 font-bold">0,75 h</span>
             </div>
-            <div class="flex justify-between p-2 rounded bg-slate-950/60 border border-slate-800/50">
-              <span class="text-slate-300">1 heure 12 min</span>
-              <span class="text-brand-400 font-bold">1,20 h</span>
+            <div class="flex justify-between p-2 rounded bg-white/60 border border-stone-200/50">
+              <span class="text-slate-600">1 heure 12 min</span>
+              <span class="text-brand-600 font-bold">1,20 h</span>
             </div>
           </div>
-          <a href="#quick-table" class="block text-center text-xs text-brand-400 hover:underline mt-3" data-i18n="view-full-table">Voir le tableau complet 1-60 min →</a>
+          <a href="#quick-table" class="block text-center text-xs text-brand-600 hover:underline mt-3" data-i18n="view-full-table">Voir le tableau complet 1-60 min →</a>
         </div>
 
       </div>
     </div>
 
     <!-- FULL TIMESHEET & PAYROLL CALCULATOR SECTION -->
-    <section id="timesheet" class="glass-card rounded-2xl p-6 sm:p-8 mb-12 border border-slate-800 relative">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-6 mb-6">
+    <section id="timesheet" class="glass-card rounded-2xl p-6 sm:p-8 mb-12 border border-stone-200 relative">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-stone-200 pb-6 mb-6">
         <div>
           <div class="flex items-center gap-2">
             <span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 rounded-md text-xs font-mono font-bold border border-emerald-500/20" data-i18n="badge-timesheet">Module Avancé</span>
-            <h2 class="text-2xl font-bold text-white" data-i18n="ts-title">Calculateur de Feuille de Temps & Estimateur de Paie</h2>
+            <h2 class="text-2xl font-bold text-slate-900" data-i18n="ts-title">Calculateur de Feuille de Temps & Estimateur de Paie</h2>
           </div>
           <p class="text-sm text-slate-400 mt-1" data-i18n="ts-subtitle">Saisissez vos horaires quotidiens pour calculer la paie brute, nette et les heures supplémentaires.</p>
         </div>
 
         <!-- Global Settings Controls -->
         <div class="flex flex-wrap items-center gap-3">
-          <div class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 flex items-center gap-2">
+          <div class="bg-white border border-stone-300 rounded-lg px-3 py-1.5 flex items-center gap-2">
             <label class="text-xs text-slate-400 font-medium" data-i18n="label-hourly-rate">Taux Horaire (€/h):</label>
-            <input type="number" id="hourly-rate" value="12.50" step="0.10" min="0" oninput="calculatePayroll()" class="w-20 bg-slate-950 text-white text-xs font-mono font-bold px-2 py-1 rounded border border-slate-700 focus:outline-none focus:ring-1 focus:ring-brand-500">
+            <input type="number" id="hourly-rate" value="12.50" step="0.10" min="0" oninput="calculatePayroll()" class="w-20 bg-stone-50 text-slate-900 text-xs font-mono font-bold px-2 py-1 rounded border border-stone-300 focus:outline-none focus:ring-1 focus:ring-brand-500">
           </div>
-          <div class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 flex items-center gap-2">
+          <div class="bg-white border border-stone-300 rounded-lg px-3 py-1.5 flex items-center gap-2">
             <label class="text-xs text-slate-400 font-medium" data-i18n="label-charges">Cotisations Est. (%):</label>
-            <input type="number" id="tax-rate" value="22" step="1" min="0" max="100" oninput="calculatePayroll()" class="w-16 bg-slate-950 text-white text-xs font-mono font-bold px-2 py-1 rounded border border-slate-700 focus:outline-none focus:ring-1 focus:ring-brand-500">
+            <input type="number" id="tax-rate" value="22" step="1" min="0" max="100" oninput="calculatePayroll()" class="w-16 bg-stone-50 text-slate-900 text-xs font-mono font-bold px-2 py-1 rounded border border-stone-300 focus:outline-none focus:ring-1 focus:ring-brand-500">
           </div>
         </div>
       </div>
@@ -395,7 +398,7 @@
       <div class="overflow-x-auto mb-6">
         <table class="w-full text-left text-sm font-sans">
           <thead>
-            <tr class="bg-slate-900/80 text-slate-400 text-xs font-mono uppercase tracking-wider border-b border-slate-800">
+            <tr class="bg-white/80 text-slate-400 text-xs font-mono uppercase tracking-wider border-b border-stone-200">
               <th class="p-3" data-i18n="th-day">Jour</th>
               <th class="p-3" data-i18n="th-start">Début</th>
               <th class="p-3" data-i18n="th-end">Fin</th>
@@ -405,33 +408,33 @@
               <th class="p-3 text-right" data-i18n="th-pay">Gain Brut Est.</th>
             </tr>
           </thead>
-          <tbody id="timesheet-rows" class="divide-y divide-slate-800/60 font-mono text-xs">
+          <tbody id="timesheet-rows" class="divide-y divide-stone-200/60 font-mono text-xs">
             <!-- Dynamic Rows injected via JS -->
           </tbody>
         </table>
       </div>
 
       <!-- OVERTIME & SUMMARY DISPLAY -->
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 bg-slate-900/90 rounded-xl p-5 border border-slate-800">
-        <div class="p-3 bg-slate-950 rounded-lg border border-slate-800">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 bg-white/90 rounded-xl p-5 border border-stone-200">
+        <div class="p-3 bg-stone-50 rounded-lg border border-stone-200">
           <span class="text-[10px] text-slate-400 block uppercase" data-i18n="sum-total-hours">Total Heures Décimales</span>
-          <span id="sum-total-dec" class="text-2xl font-bold font-mono text-white mt-1 block">0.00 h</span>
+          <span id="sum-total-dec" class="text-2xl font-bold font-mono text-slate-900 mt-1 block">0.00 h</span>
           <span id="sum-total-hhmm" class="text-xs text-slate-400 font-mono">0h 00m</span>
         </div>
 
-        <div class="p-3 bg-slate-950 rounded-lg border border-slate-800">
+        <div class="p-3 bg-stone-50 rounded-lg border border-stone-200">
           <span class="text-[10px] text-slate-400 block uppercase" data-i18n="sum-overtime">Heures Majorées (>35h)</span>
           <span id="sum-overtime-val" class="text-2xl font-bold font-mono text-amber-400 mt-1 block">0.00 h</span>
           <span class="text-[10px] text-amber-500/80" data-i18n="sum-overtime-detail">Majorées à +25%</span>
         </div>
 
-        <div class="p-3 bg-slate-950 rounded-lg border border-slate-800">
+        <div class="p-3 bg-stone-50 rounded-lg border border-stone-200">
           <span class="text-[10px] text-slate-400 block uppercase" data-i18n="sum-gross">Salaire Total Brut</span>
-          <span id="sum-gross-val" class="text-2xl font-bold font-mono text-brand-400 mt-1 block">0.00 €</span>
+          <span id="sum-gross-val" class="text-2xl font-bold font-mono text-brand-600 mt-1 block">0.00 €</span>
           <span class="text-[10px] text-slate-400" data-i18n="sum-base-rate">Inclus majorations</span>
         </div>
 
-        <div class="p-3 bg-slate-950 rounded-lg border border-emerald-500/30 bg-emerald-950/10">
+        <div class="p-3 bg-stone-50 rounded-lg border border-emerald-500/30 bg-emerald-950/10">
           <span class="text-[10px] text-emerald-400 font-semibold block uppercase" data-i18n="sum-net">Salaire Net Estimé</span>
           <span id="sum-net-val" class="text-2xl font-bold font-mono text-emerald-400 mt-1 block">0.00 €</span>
           <span class="text-[10px] text-slate-400" data-i18n="sum-after-charges">Après cotisations sociales</span>
@@ -440,10 +443,10 @@
 
       <!-- ACTION BUTTONS (EXPORT / PRINT) -->
       <div class="mt-6 flex flex-wrap gap-3 justify-end">
-        <button onclick="exportCSV()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg transition-colors flex items-center gap-2">
+        <button onclick="exportCSV()" class="px-4 py-2 bg-stone-100 hover:bg-stone-200 text-slate-700 text-xs font-semibold rounded-lg transition-colors flex items-center gap-2">
           📊 <span data-i18n="btn-export-csv">Exporter en CSV</span>
         </button>
-        <button onclick="window.print()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg transition-colors flex items-center gap-2">
+        <button onclick="window.print()" class="px-4 py-2 bg-stone-100 hover:bg-stone-200 text-slate-700 text-xs font-semibold rounded-lg transition-colors flex items-center gap-2">
           🖨️ <span data-i18n="btn-print">Imprimer / PDF</span>
         </button>
       </div>
@@ -451,7 +454,7 @@
 
     <!-- ADSENSE AD SLOT 3: MID-PAGE NATIVE BANNER -->
     <aside class="w-full my-10" aria-label="Espace publicitaire central">
-      <div class="ad-banner-slot border border-slate-800/80 rounded-xl p-4 text-center min-h-[90px] flex flex-col justify-center items-center">
+      <div class="ad-banner-slot border border-stone-200/80 rounded-xl p-4 text-center min-h-[90px] flex flex-col justify-center items-center">
         <span class="text-[10px] uppercase font-mono tracking-widest text-slate-500 mb-1">Publicité / Advertisement — AdSense Unit #3</span>
         <div class="text-slate-400 text-xs italic">
           <ins class="adsbygoogle"
@@ -469,10 +472,10 @@
     <section id="quick-table" class="glass-card rounded-2xl p-6 sm:p-8 mb-12">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
-          <h2 class="text-xl font-bold text-white" data-i18n="tbl-title">Table Officielle de Conversion des Minutes en Centièmes</h2>
+          <h2 class="text-xl font-bold text-slate-900" data-i18n="tbl-title">Table Officielle de Conversion des Minutes en Centièmes</h2>
           <p class="text-xs text-slate-400 mt-1" data-i18n="tbl-desc">Correspondance exacte de 1 à 60 minutes pour la gestion administrative des temps.</p>
         </div>
-        <input type="text" id="table-search" placeholder="Rechercher une minute..." onkeyup="filterTable()" class="bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:ring-1 focus:ring-brand-500 w-full sm:w-48 font-mono">
+        <input type="text" id="table-search" placeholder="Rechercher une minute..." onkeyup="filterTable()" class="bg-stone-50 border border-stone-300 rounded-lg px-3 py-1.5 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-brand-500 w-full sm:w-48 font-mono">
       </div>
 
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 font-mono text-xs max-h-96 overflow-y-auto pr-2" id="conversion-table-grid">
@@ -483,41 +486,41 @@
     <!-- GEO & SEO COMPREHENSIVE GUIDE & FAQ (FOR IA ENGINES & USERS) -->
     <section id="geo-faq" class="space-y-8">
       <div class="text-center max-w-3xl mx-auto">
-        <span class="text-xs font-mono uppercase tracking-widest text-brand-400" data-i18n="geo-kicker">Base de Connaissance & Réglementation</span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1" data-i18n="geo-heading">Tout savoir sur le calcul des heures en décimales</h2>
+        <span class="text-xs font-mono uppercase tracking-widest text-brand-600" data-i18n="geo-kicker">Base de Connaissance & Réglementation</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1" data-i18n="geo-heading">Tout savoir sur le calcul des heures en décimales</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         
         <!-- ARTICLE 1 -->
-        <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 leading-relaxed text-slate-300 text-sm">
-          <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-            <span class="text-brand-400">❓</span> <span data-i18n="q1-title">Comment fonctionne la conversion sexagésimale en centièmes ?</span>
+        <article class="bg-white/70 border border-stone-200 rounded-2xl p-6 leading-relaxed text-slate-600 text-sm">
+          <h3 class="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
+            <span class="text-brand-600">❓</span> <span data-i18n="q1-title">Comment fonctionne la conversion sexagésimale en centièmes ?</span>
           </h3>
           <p class="mb-3" data-i18n="q1-body1">
             Le temps ordinaire est décompté en système sexagésimal (base 60) : une heure contient 60 minutes. Cependant, les outils informatiques, logiciels de paie et calculateurs financiers fonctionnent en système décimal (base 100).
           </p>
           <p data-i18n="q1-body2">
-            La formule mathématique de conversion est : <code class="bg-slate-950 text-brand-400 px-2 py-0.5 rounded font-mono">Heures Décimales = Heures + (Minutes / 60)</code>. Par exemple, pour 8 heures et 15 minutes, le calcul donne : 15 / 60 = 0,25. Soit 8 + 0,25 = 8,25 heures décimales.
+            La formule mathématique de conversion est : <code class="bg-stone-50 text-brand-600 px-2 py-0.5 rounded font-mono">Heures Décimales = Heures + (Minutes / 60)</code>. Par exemple, pour 8 heures et 15 minutes, le calcul donne : 15 / 60 = 0,25. Soit 8 + 0,25 = 8,25 heures décimales.
           </p>
         </article>
 
         <!-- ARTICLE 2 -->
-        <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 leading-relaxed text-slate-300 text-sm">
-          <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+        <article class="bg-white/70 border border-stone-200 rounded-2xl p-6 leading-relaxed text-slate-600 text-sm">
+          <h3 class="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
             <span class="text-emerald-400">💶</span> <span data-i18n="q2-title">Pourquoi les erreurs de conversion coûtent cher en paie ?</span>
           </h3>
           <p class="mb-3" data-i18n="q2-body1">
             Une erreur fréquente consiste à multiplier directement les minutes par le taux horaire. Par exemple, multiplier 15 €/heure par 7,30 (pour 7h30) donne 109,50 €, ce qui est faux !
           </p>
           <p data-i18n="q2-body2">
-            Le vrai calcul implique d'utiliser 7,50 heures décimales : <code class="bg-slate-950 text-emerald-400 px-2 py-0.5 rounded font-mono">7,50 h × 15 € = 112,50 €</code>. Une telle confusion entraîne un sous-paiement des salariés et des litiges prud'homaux.
+            Le vrai calcul implique d'utiliser 7,50 heures décimales : <code class="bg-stone-50 text-emerald-400 px-2 py-0.5 rounded font-mono">7,50 h × 15 € = 112,50 €</code>. Une telle confusion entraîne un sous-paiement des salariés et des litiges prud'homaux.
           </p>
         </article>
 
         <!-- ARTICLE 3 -->
-        <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 leading-relaxed text-slate-300 text-sm">
-          <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+        <article class="bg-white/70 border border-stone-200 rounded-2xl p-6 leading-relaxed text-slate-600 text-sm">
+          <h3 class="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
             <span class="text-amber-400">⚖️</span> <span data-i18n="q3-title">Heures supplémentaires et réglementation en France</span>
           </h3>
           <p data-i18n="q3-body">
@@ -526,12 +529,12 @@
         </article>
 
         <!-- ARTICLE 4 -->
-        <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 leading-relaxed text-slate-300 text-sm">
-          <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+        <article class="bg-white/70 border border-stone-200 rounded-2xl p-6 leading-relaxed text-slate-600 text-sm">
+          <h3 class="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
             <span class="text-indigo-400">💻</span> <span data-i18n="q4-title">Comment utiliser les heures décimales dans Excel / Google Sheets ?</span>
           </h3>
           <p class="mb-3" data-i18n="q4-body1">
-            Dans un tableur comme Microsoft Excel, si la cellule A1 contient la durée au format <code class="bg-slate-950 text-slate-200 px-1.5 py-0.5 rounded font-mono">hh:mm</code>, vous devez multiplier la cellule par 24 pour obtenir des heures décimales : <code class="bg-slate-950 text-indigo-300 px-2 py-0.5 rounded font-mono">=A1*24</code>.
+            Dans un tableur comme Microsoft Excel, si la cellule A1 contient la durée au format <code class="bg-stone-50 text-slate-700 px-1.5 py-0.5 rounded font-mono">hh:mm</code>, vous devez multiplier la cellule par 24 pour obtenir des heures décimales : <code class="bg-stone-50 text-indigo-300 px-2 py-0.5 rounded font-mono">=A1*24</code>.
           </p>
           <p data-i18n="q4-body2">
             Ensuite, formatez la cellule de résultat en nombre standard avec 2 décimales.
@@ -544,58 +547,58 @@
   </main>
 
   <!-- FOOTER & LEGAL NOTICES -->
-  <footer class="bg-slate-950 border-t border-slate-800 text-slate-400 text-xs py-10">
+  <footer class="bg-stone-50 border-t border-stone-200 text-slate-400 text-xs py-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
       <div>
-        <span class="text-base font-bold text-white block mb-2">HoraDecimal.pro</span>
+        <span class="text-base font-bold text-slate-900 block mb-2">HoraDecimal.pro</span>
         <p class="text-slate-400 leading-relaxed" data-i18n="footer-desc">
           Outil en ligne gratuit de conversion des temps de travail et calcul de paie. Conçu pour les gestionnaires RH, comptables, indépendants et salariés.
         </p>
       </div>
 
       <div>
-        <span class="font-semibold text-slate-200 block mb-2" data-i18n="footer-links-title">Ressources & Accès</span>
+        <span class="font-semibold text-slate-700 block mb-2" data-i18n="footer-links-title">Ressources & Accès</span>
         <ul class="space-y-1.5">
-          <li><a href="#converter" class="hover:text-white transition-colors" data-i18n="nav-converter">Convertisseur de Minutes</a></li>
-          <li><a href="#timesheet" class="hover:text-white transition-colors" data-i18n="nav-timesheet">Feuille d'Heures Hebdomadaire</a></li>
-          <li><a href="#quick-table" class="hover:text-white transition-colors" data-i18n="nav-table">Table de 1 à 60 min</a></li>
-          <li><button onclick="toggleLegalModal()" class="hover:text-white underline text-left" data-i18n="footer-legal">Mentions Légales & Confidentialité</button></li>
+          <li><a href="#converter" class="hover:text-slate-900 transition-colors" data-i18n="nav-converter">Convertisseur de Minutes</a></li>
+          <li><a href="#timesheet" class="hover:text-slate-900 transition-colors" data-i18n="nav-timesheet">Feuille d'Heures Hebdomadaire</a></li>
+          <li><a href="#quick-table" class="hover:text-slate-900 transition-colors" data-i18n="nav-table">Table de 1 à 60 min</a></li>
+          <li><button onclick="toggleLegalModal()" class="hover:text-slate-900 underline text-left" data-i18n="footer-legal">Mentions Légales & Confidentialité</button></li>
         </ul>
       </div>
 
       <div>
-        <span class="font-semibold text-slate-200 block mb-2" data-i18n="footer-conformity">Conformité RGPD & Publicité</span>
+        <span class="font-semibold text-slate-700 block mb-2" data-i18n="footer-conformity">Conformité RGPD & Publicité</span>
         <p class="text-slate-400 leading-relaxed" data-i18n="footer-gdpr">
           Ce site utilise des cookies de mesure d'audience et des emplacements publicitaires Google AdSense conformes aux directives Google Publisher Policies et au RGPD.
         </p>
       </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 mt-8 border-t border-slate-900 text-center text-slate-400 flex flex-col sm:flex-row justify-between items-center gap-2">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 mt-8 border-t border-stone-200 text-center text-slate-400 flex flex-col sm:flex-row justify-between items-center gap-2">
       <span>© 2025 HoraDecimal.pro — Tous droits réservés.</span>
       <span data-i18n="footer-disclaimer">Outil fourni à titre indicatif, validez toujours avec votre service de paie.</span>
     </div>
   </footer>
 
   <!-- LEGAL NOTICES MODAL -->
-  <div id="legal-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-6 relative">
-      <button onclick="toggleLegalModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white font-bold text-lg">✕</button>
-      <h3 class="text-xl font-bold text-white mb-4" data-i18n="modal-title">Mentions Légales, RGPD & CGU</h3>
-      <div class="space-y-4 text-xs text-slate-300 leading-relaxed">
+  <div id="legal-modal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-stone-200 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-6 relative">
+      <button onclick="toggleLegalModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-900 font-bold text-lg">✕</button>
+      <h3 class="text-xl font-bold text-slate-900 mb-4" data-i18n="modal-title">Mentions Légales, RGPD & CGU</h3>
+      <div class="space-y-4 text-xs text-slate-600 leading-relaxed">
         <p><strong>1. Éditeur du service :</strong> Site d'information et outil d'utilité publique édité à titre indépendant.</p>
         <p><strong>2. Données personnelles & RGPD :</strong> Aucun enregistrement de vos données saisies sur le calculateur n'est effectué sur un serveur. Tous les calculs s'exécutent localement dans votre navigateur web.</p>
         <p><strong>3. Cookies & Google AdSense :</strong> Ce site intègre des scripts publicitaires fournis par Google AdSense. Google peut utiliser des cookies pour diffuser des annonces basées sur la navigation antérieure de l'utilisateur. Vous pouvez personnaliser ou refuser le ciblage publicitaire dans les paramètres de votre navigateur.</p>
         <p><strong>4. Limite de responsabilité :</strong> Les résultats de paie et de conversion d'heures sont fournis à titre d'estimation. L'éditeur ne saurait être tenu responsable d'une erreur de paie liée à une mauvaise utilisation.</p>
       </div>
       <div class="mt-6 text-right">
-        <button onclick="toggleLegalModal()" class="px-4 py-2 bg-brand-600 text-white font-semibold rounded-lg text-xs" data-i18n="modal-close">Fermer</button>
+        <button onclick="toggleLegalModal()" class="px-4 py-2 bg-brand-600 text-slate-900 font-semibold rounded-lg text-xs" data-i18n="modal-close">Fermer</button>
       </div>
     </div>
   </div>
 
   <!-- TOAST NOTIFICATION -->
-  <div id="toast" class="fixed bottom-4 right-4 bg-emerald-600 text-white px-4 py-2.5 rounded-xl shadow-2xl font-mono text-xs font-semibold transform translate-y-20 opacity-0 transition-all duration-300 z-50 flex items-center gap-2">
+  <div id="toast" class="fixed bottom-4 right-4 bg-emerald-600 text-slate-900 px-4 py-2.5 rounded-xl shadow-2xl font-mono text-xs font-semibold transform translate-y-20 opacity-0 transition-all duration-300 z-50 flex items-center gap-2">
     <span>✅</span> <span id="toast-msg">Copié dans le presse-papier !</span>
   </div>
 
@@ -753,8 +756,8 @@
 
     function setLanguage(lang) {
       currentLang = lang;
-      document.getElementById('lang-fr').className = lang === 'fr' ? 'px-2 py-0.5 rounded font-bold bg-brand-600 text-white' : 'px-2 py-0.5 rounded text-slate-400 hover:text-white';
-      document.getElementById('lang-en').className = lang === 'en' ? 'px-2 py-0.5 rounded font-bold bg-brand-600 text-white' : 'px-2 py-0.5 rounded text-slate-400 hover:text-white';
+      document.getElementById('lang-fr').className = lang === 'fr' ? 'px-2 py-0.5 rounded font-bold bg-brand-600 text-slate-900' : 'px-2 py-0.5 rounded text-slate-400 hover:text-slate-900';
+      document.getElementById('lang-en').className = lang === 'en' ? 'px-2 py-0.5 rounded font-bold bg-brand-600 text-slate-900' : 'px-2 py-0.5 rounded text-slate-400 hover:text-slate-900';
 
       const elems = document.querySelectorAll('[data-i18n]');
       elems.forEach(el => {
@@ -809,20 +812,20 @@
       defaultDays.forEach((item, index) => {
         const dayLabel = currentLang === 'fr' ? item.dayFr : item.dayEn;
         const row = document.createElement('tr');
-        row.className = 'hover:bg-slate-900/50 transition-colors';
+        row.className = 'hover:bg-white/50 transition-colors';
         row.innerHTML = `
-          <td class="p-3 font-semibold text-slate-200">${dayLabel}</td>
+          <td class="p-3 font-semibold text-slate-700">${dayLabel}</td>
           <td class="p-3">
-            <input type="time" value="${item.start}" id="start-${index}" onchange="calculatePayroll()" class="bg-slate-950 text-slate-100 border border-slate-700 rounded px-2 py-1 focus:outline-none focus:ring-1 focus:ring-brand-500 text-xs">
+            <input type="time" value="${item.start}" id="start-${index}" onchange="calculatePayroll()" class="bg-stone-50 text-slate-800 border border-stone-300 rounded px-2 py-1 focus:outline-none focus:ring-1 focus:ring-brand-500 text-xs">
           </td>
           <td class="p-3">
-            <input type="time" value="${item.end}" id="end-${index}" onchange="calculatePayroll()" class="bg-slate-950 text-slate-100 border border-slate-700 rounded px-2 py-1 focus:outline-none focus:ring-1 focus:ring-brand-500 text-xs">
+            <input type="time" value="${item.end}" id="end-${index}" onchange="calculatePayroll()" class="bg-stone-50 text-slate-800 border border-stone-300 rounded px-2 py-1 focus:outline-none focus:ring-1 focus:ring-brand-500 text-xs">
           </td>
           <td class="p-3">
-            <input type="number" value="${item.breakMin}" id="break-${index}" min="0" step="5" oninput="calculatePayroll()" class="w-16 bg-slate-950 text-slate-100 border border-slate-700 rounded px-2 py-1 focus:outline-none focus:ring-1 focus:ring-brand-500 text-xs">
+            <input type="number" value="${item.breakMin}" id="break-${index}" min="0" step="5" oninput="calculatePayroll()" class="w-16 bg-stone-50 text-slate-800 border border-stone-300 rounded px-2 py-1 focus:outline-none focus:ring-1 focus:ring-brand-500 text-xs">
           </td>
-          <td class="p-3 text-right text-slate-300" id="hhmm-${index}">0h 00m</td>
-          <td class="p-3 text-right font-bold text-brand-400" id="dec-${index}">0.00 h</td>
+          <td class="p-3 text-right text-slate-600" id="hhmm-${index}">0h 00m</td>
+          <td class="p-3 text-right font-bold text-brand-600" id="dec-${index}">0.00 h</td>
           <td class="p-3 text-right font-bold text-emerald-400" id="pay-${index}">0.00 €</td>
         `;
         tbody.appendChild(row);
@@ -906,11 +909,11 @@
       for (let min = 1; min <= 60; min++) {
         const dec = (min / 60).toFixed(2);
         const item = document.createElement('div');
-        item.className = 'table-row-item flex justify-between items-center p-2 rounded bg-slate-900 border border-slate-800 hover:border-brand-500/50 transition-colors';
+        item.className = 'table-row-item flex justify-between items-center p-2 rounded bg-white border border-stone-200 hover:border-brand-500/50 transition-colors';
         item.setAttribute('data-min', min);
         item.innerHTML = `
           <span class="text-slate-400">${min} min</span>
-          <span class="font-bold text-brand-400">${dec} h</span>
+          <span class="font-bold text-brand-600">${dec} h</span>
         `;
         container.appendChild(item);
       }
